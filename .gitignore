@@ -1,3 +1,6 @@
 ## ignore papers and images ##
 *.pdf
 *.png
+## ignore simulation output and error files
+*.e
+*.o
