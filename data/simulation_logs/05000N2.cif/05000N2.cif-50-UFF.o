@@ -1,0 +1,128 @@
+Mon Jul 26 10:36:39 PDT 2021
+running mol sim in 05000N2.cif with 50 cycles and UFF
+μVT simulation
+crystal: 05000N2.cif
+temperature: 298.000000 K
+
+adsorbates:
+Kr	partial pressure = 0.800000 bar
+Xe	partial pressure = 0.200000 bar
+ force field.
+UFF	# burn cycles: 50
+	# sample cycles: 50
+	ideal equation of state, Kr partial fugacity = 0.800000 bar
+	ideal equation of state, Xe partial fugacity = 0.200000 bar
+	the crystal:
+		replicated (3,3,5) for short-range cutoff of 14.000000 Å
+		density [kg/m³]: 909.0105786851386
+		chemical formula: Dict(:H => 2, :B => 1, :O => 1, :C => 3)
+		# atoms: 3780
+		# point charges: 0
+	the molecules:
+	Kr
+		unique species: [:Kr]
+		# atoms: 1
+		# point charges: 0
+	Xe
+		unique species: [:Xe]
+		# atoms: 1
+		# point charges: 0
+	Markov chain proposals:
+		probability of insertion: 0.318182
+		probability of deletion: 0.318182
+		probability of translation: 0.227273
+		probability of rotation: 0.000000
+		probability of reinsertion: 0.045455
+		probability of identity change: 0.090909
+		translation step size: 2.0 Å
+		translation step size adjusted to: 1.6666666666666667 Å
+		translation step size adjusted to: 1.388888888888889 Å
+		translation step size adjusted to: 1.1574074074074077 Å
+		translation step size adjusted to: 0.9645061728395065 Å
+		translation step size adjusted to: 0.803755144032922 Å
+		translation step size adjusted to: 0.6697959533607684 Å
+		translation step size adjusted to: 0.803755144032922 Å
+		translation step size adjusted to: 0.9645061728395063 Å
+		translation step size adjusted to: 0.803755144032922 Å
+	Block  1/5 statistics:
+	# samples: 200
+	⟨N⟩ (molecules) = [4.305, 7.215]
+	⟨U_gh, vdw⟩ (K) = -28293.62486171788
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -131.0042065968764
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -28424.62906831476
+	Block  2/5 statistics:
+	# samples: 200
+	⟨N⟩ (molecules) = [4.715, 8.925]
+	⟨U_gh, vdw⟩ (K) = -33668.99405678947
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -145.7044868626342
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -33814.6985436521
+	Block  3/5 statistics:
+	# samples: 200
+	⟨N⟩ (molecules) = [8.805, 6.335]
+	⟨U_gh, vdw⟩ (K) = -36343.56167191597
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -108.93111788830618
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -36452.49278980428
+	Block  4/5 statistics:
+	# samples: 200
+	⟨N⟩ (molecules) = [8.495, 7.01]
+	⟨U_gh, vdw⟩ (K) = -38229.9645841432
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -109.03275012319278
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -38338.997334266394
+	Block  5/5 statistics:
+	# samples: 200
+	⟨N⟩ (molecules) = [8.69, 6.83]
+	⟨U_gh, vdw⟩ (K) = -38235.14593135892
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -99.98336836025919
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -38335.12929971918
+	Estimated elapsed time: 4 seconds
+	Total # MC steps: 2000
+
+Unit cell replication factors: 3 3 5
+
+
+# sample cycles: 50
+# burn cycles: 50
+# samples: 1000
+reinsertion	81 total proposals.
+	0.000000 % proposals accepted.
+identity change	181 total proposals.
+	55.248619 % proposals accepted.
+deletion	620 total proposals.
+	1.290323 % proposals accepted.
+translation	488 total proposals.
+	38.729508 % proposals accepted.
+insertion	630 total proposals.
+	3.809524 % proposals accepted.
+
+Kr
+⟨N⟩ (molecules): 7.002000 +/- 2.000419
+⟨N⟩ (molecules/unit cell): 0.155600 +/- 0.044454
+⟨N⟩ (mmol/g): 0.199923 +/- 0.057116
+
+Xe
+⟨N⟩ (molecules): 7.263000 +/- 0.862982
+⟨N⟩ (molecules/unit cell): 0.161400 +/- 0.019177
+⟨N⟩ (mmol/g): 0.207375 +/- 0.024640
+
+⟨U_gg, vdw⟩ (K): -118.931186 +/- 16.512739
+⟨U_gh, vdw⟩ (K): -34954.258221 +/- 3652.142772
+⟨U_gg, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U_gh, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U⟩ (K): -35073.189407 +/- 3668.655511
+
+Q_st (K) = 46289.469849 = 384.850652 kJ/mol
+
+
+Q_st (K) = 117533.161202 = 977.170702 kJ/mol
+
+	results dictionary saved in /nfs/stak/users/gantzlen/Mixture_Sim_Benchmarking/data/simulations/muVT_xtal_05000N2.cif_T_298.000K_Kr_P_0.800000bar_Xe_P_0.200000bar_UFF_50burn_50sample.jld2

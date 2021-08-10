@@ -1,0 +1,121 @@
+Tue Jul 27 10:21:46 PDT 2021
+running mol sim in 17156N2.cif with 43833 cycles and UFF
+μVT simulation
+crystal: 17156N2.cif
+temperature: 298.000000 K
+
+adsorbates:
+Kr	partial pressure = 0.800000 bar
+Xe	partial pressure = 0.200000 bar
+ force field.
+UFF	# burn cycles: 43833
+	# sample cycles: 43833
+	ideal equation of state, Kr partial fugacity = 0.800000 bar
+	ideal equation of state, Xe partial fugacity = 0.200000 bar
+	the crystal:
+		replicated (1,1,5) for short-range cutoff of 14.000000 Å
+		density [kg/m³]: 1049.8811057701823
+		chemical formula: Dict(:N => 4, :H => 49, :O => 8, :C => 51)
+		# atoms: 3360
+		# point charges: 0
+	the molecules:
+	Kr
+		unique species: [:Kr]
+		# atoms: 1
+		# point charges: 0
+	Xe
+		unique species: [:Xe]
+		# atoms: 1
+		# point charges: 0
+	Markov chain proposals:
+		probability of insertion: 0.318182
+		probability of deletion: 0.318182
+		probability of translation: 0.227273
+		probability of rotation: 0.000000
+		probability of reinsertion: 0.045455
+		probability of identity change: 0.090909
+		translation step size: 2.0 Å
+		translation step size adjusted to: 1.6666666666666667 Å
+		translation step size adjusted to: 1.388888888888889 Å
+	Block  1/5 statistics:
+	# samples: 245889
+	⟨N⟩ (molecules) = [9.19270890523773, 19.52631878611894]
+	⟨U_gh, vdw⟩ (K) = -71225.5008591519
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -1366.3021632462603
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -72591.80302239815
+	Block  2/5 statistics:
+	# samples: 249499
+	⟨N⟩ (molecules) = [9.33519974027952, 19.63109270979042]
+	⟨U_gh, vdw⟩ (K) = -71152.66236469842
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -1410.8250577847323
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -72563.48742248314
+	Block  3/5 statistics:
+	# samples: 256386
+	⟨N⟩ (molecules) = [9.49385301849555, 20.288869127019417]
+	⟨U_gh, vdw⟩ (K) = -73746.76828947297
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -1497.932880525578
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -75244.70116999855
+	Block  4/5 statistics:
+	# samples: 257802
+	⟨N⟩ (molecules) = [9.304311060426219, 20.645258764478164]
+	⟨U_gh, vdw⟩ (K) = -74185.88472635465
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -1461.1499512786077
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -75647.03467763326
+	Block  5/5 statistics:
+	# samples: 266937
+	⟨N⟩ (molecules) = [9.820429539554278, 21.121230852223558]
+	⟨U_gh, vdw⟩ (K) = -76977.38490543327
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -1609.9053949869315
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -78587.2903004202
+	Estimated elapsed time: 534 seconds
+	Total # MC steps: 2512640
+
+Unit cell replication factors: 1 1 5
+
+
+# sample cycles: 43833
+# burn cycles: 43833
+# samples: 1276513
+reinsertion	114082 total proposals.
+	0.937922 % proposals accepted.
+identity change	228754 total proposals.
+	68.289516 % proposals accepted.
+deletion	800556 total proposals.
+	2.310020 % proposals accepted.
+translation	570827 total proposals.
+	42.254834 % proposals accepted.
+insertion	798421 total proposals.
+	2.320705 % proposals accepted.
+
+Kr
+⟨N⟩ (molecules): 9.434848 +/- 0.213632
+⟨N⟩ (molecules/unit cell): 1.886970 +/- 0.042726
+⟨N⟩ (mmol/g): 0.371762 +/- 0.008418
+
+Xe
+⟨N⟩ (molecules): 20.259452 +/- 0.591788
+⟨N⟩ (molecules/unit cell): 4.051890 +/- 0.118358
+⟨N⟩ (mmol/g): 0.798285 +/- 0.023318
+
+⟨U_gg, vdw⟩ (K): -1471.538347 +/- 81.621688
+⟨U_gh, vdw⟩ (K): -73518.331479 +/- 2115.434219
+⟨U_gg, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U_gh, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U⟩ (K): -74989.869826 +/- 2197.055908
+
+Q_st (K) = 187854.341482 = 1561.820995 kJ/mol
+
+
+Q_st (K) = 52709.856375 = 438.229746 kJ/mol
+
+	results dictionary saved in /nfs/stak/users/gantzlen/Mixture_Sim_Benchmarking/data/simulations/muVT_xtal_17156N2.cif_T_298.000K_Kr_P_0.800000bar_Xe_P_0.200000bar_UFF_43833burn_43833sample.jld2

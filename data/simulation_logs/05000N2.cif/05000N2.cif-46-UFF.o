@@ -1,0 +1,130 @@
+Mon Jul 26 10:36:38 PDT 2021
+running mol sim in 05000N2.cif with 46 cycles and UFF
+μVT simulation
+crystal: 05000N2.cif
+temperature: 298.000000 K
+
+adsorbates:
+Kr	partial pressure = 0.800000 bar
+Xe	partial pressure = 0.200000 bar
+ force field.
+UFF	# burn cycles: 46
+	# sample cycles: 46
+	ideal equation of state, Kr partial fugacity = 0.800000 bar
+	ideal equation of state, Xe partial fugacity = 0.200000 bar
+	the crystal:
+		replicated (3,3,5) for short-range cutoff of 14.000000 Å
+		density [kg/m³]: 909.0105786851386
+		chemical formula: Dict(:H => 2, :B => 1, :O => 1, :C => 3)
+		# atoms: 3780
+		# point charges: 0
+	the molecules:
+	Kr
+		unique species: [:Kr]
+		# atoms: 1
+		# point charges: 0
+	Xe
+		unique species: [:Xe]
+		# atoms: 1
+		# point charges: 0
+	Markov chain proposals:
+		probability of insertion: 0.318182
+		probability of deletion: 0.318182
+		probability of translation: 0.227273
+		probability of rotation: 0.000000
+		probability of reinsertion: 0.045455
+		probability of identity change: 0.090909
+		translation step size: 2.0 Å
+		translation step size adjusted to: 1.6666666666666667 Å
+		translation step size adjusted to: 1.388888888888889 Å
+		translation step size adjusted to: 1.1574074074074077 Å
+		translation step size adjusted to: 0.9645061728395065 Å
+		translation step size adjusted to: 0.803755144032922 Å
+		translation step size adjusted to: 0.9645061728395063 Å
+		translation step size adjusted to: 0.803755144032922 Å
+		translation step size adjusted to: 0.6697959533607684 Å
+		translation step size adjusted to: 0.558163294467307 Å
+		translation step size adjusted to: 0.6697959533607684 Å
+		translation step size adjusted to: 0.803755144032922 Å
+	Block  1/5 statistics:
+	# samples: 180
+	⟨N⟩ (molecules) = [2.738888888888889, 2.638888888888889]
+	⟨U_gh, vdw⟩ (K) = -12561.122552435605
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -1.0811350050200792
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -12562.203687440624
+	Block  2/5 statistics:
+	# samples: 180
+	⟨N⟩ (molecules) = [5.0055555555555555, 2.4555555555555557]
+	⟨U_gh, vdw⟩ (K) = -16087.547394854262
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -74.10744942172803
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -16161.654844275992
+	Block  3/5 statistics:
+	# samples: 180
+	⟨N⟩ (molecules) = [7.044444444444444, 3.088888888888889]
+	⟨U_gh, vdw⟩ (K) = -21760.253367788493
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -130.16913747762993
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -21890.42250526612
+	Block  4/5 statistics:
+	# samples: 180
+	⟨N⟩ (molecules) = [6.716666666666667, 3.3833333333333333]
+	⟨U_gh, vdw⟩ (K) = -22682.752595551334
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -113.51391096387249
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -22796.266506515207
+	Block  5/5 statistics:
+	# samples: 200
+	⟨N⟩ (molecules) = [4.205, 5.78]
+	⟨U_gh, vdw⟩ (K) = -24445.167580541784
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -199.68542872810715
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -24644.85300926989
+	Estimated elapsed time: 4 seconds
+	Total # MC steps: 1840
+
+Unit cell replication factors: 3 3 5
+
+
+# sample cycles: 46
+# burn cycles: 46
+# samples: 920
+reinsertion	80 total proposals.
+	1.250000 % proposals accepted.
+identity change	177 total proposals.
+	44.067797 % proposals accepted.
+deletion	583 total proposals.
+	2.572899 % proposals accepted.
+translation	417 total proposals.
+	35.971223 % proposals accepted.
+insertion	583 total proposals.
+	4.459691 % proposals accepted.
+
+Kr
+⟨N⟩ (molecules): 5.121739 +/- 1.566186
+⟨N⟩ (molecules/unit cell): 0.113816 +/- 0.034804
+⟨N⟩ (mmol/g): 0.146237 +/- 0.044718
+
+Xe
+⟨N⟩ (molecules): 3.519565 +/- 1.176710
+⟨N⟩ (molecules/unit cell): 0.078213 +/- 0.026149
+⟨N⟩ (mmol/g): 0.100491 +/- 0.033598
+
+⟨U_gg, vdw⟩ (K): -105.797804 +/- 64.137957
+⟨U_gh, vdw⟩ (K): -19614.712152 +/- 4371.413518
+⟨U_gg, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U_gh, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U⟩ (K): -19720.509956 +/- 4435.551475
+
+Q_st (K) = 22522.374997 = 187.251026 kJ/mol
+
+
+Q_st (K) = 46720.585823 = 388.434951 kJ/mol
+
+	results dictionary saved in /nfs/stak/users/gantzlen/Mixture_Sim_Benchmarking/data/simulations/muVT_xtal_05000N2.cif_T_298.000K_Kr_P_0.800000bar_Xe_P_0.200000bar_UFF_46burn_46sample.jld2

@@ -1,0 +1,127 @@
+Mon Jul 26 10:36:40 PDT 2021
+running mol sim in 05000N2.cif with 65 cycles and UFF
+μVT simulation
+crystal: 05000N2.cif
+temperature: 298.000000 K
+
+adsorbates:
+Kr	partial pressure = 0.800000 bar
+Xe	partial pressure = 0.200000 bar
+ force field.
+UFF	# burn cycles: 65
+	# sample cycles: 65
+	ideal equation of state, Kr partial fugacity = 0.800000 bar
+	ideal equation of state, Xe partial fugacity = 0.200000 bar
+	the crystal:
+		replicated (3,3,5) for short-range cutoff of 14.000000 Å
+		density [kg/m³]: 909.0105786851386
+		chemical formula: Dict(:H => 2, :B => 1, :O => 1, :C => 3)
+		# atoms: 3780
+		# point charges: 0
+	the molecules:
+	Kr
+		unique species: [:Kr]
+		# atoms: 1
+		# point charges: 0
+	Xe
+		unique species: [:Xe]
+		# atoms: 1
+		# point charges: 0
+	Markov chain proposals:
+		probability of insertion: 0.318182
+		probability of deletion: 0.318182
+		probability of translation: 0.227273
+		probability of rotation: 0.000000
+		probability of reinsertion: 0.045455
+		probability of identity change: 0.090909
+		translation step size: 2.0 Å
+		translation step size adjusted to: 1.6666666666666667 Å
+		translation step size adjusted to: 1.388888888888889 Å
+		translation step size adjusted to: 1.1574074074074077 Å
+		translation step size adjusted to: 0.9645061728395065 Å
+		translation step size adjusted to: 0.803755144032922 Å
+		translation step size adjusted to: 0.9645061728395063 Å
+		translation step size adjusted to: 1.1574074074074077 Å
+		translation step size adjusted to: 0.9645061728395065 Å
+	Block  1/5 statistics:
+	# samples: 260
+	⟨N⟩ (molecules) = [6.492307692307692, 6.7384615384615385]
+	⟨U_gh, vdw⟩ (K) = -30334.518308094706
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -28.834624711956348
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -30363.352932806665
+	Block  2/5 statistics:
+	# samples: 260
+	⟨N⟩ (molecules) = [7.576923076923077, 6.5115384615384615]
+	⟨U_gh, vdw⟩ (K) = -33762.92770731192
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -44.2022858609579
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -33807.12999317288
+	Block  3/5 statistics:
+	# samples: 260
+	⟨N⟩ (molecules) = [7.073076923076923, 5.25]
+	⟨U_gh, vdw⟩ (K) = -28084.317643163242
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -86.82516462718007
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -28171.142807790424
+	Block  4/5 statistics:
+	# samples: 260
+	⟨N⟩ (molecules) = [6.734615384615385, 8.023076923076923]
+	⟨U_gh, vdw⟩ (K) = -34815.27443688112
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -127.42255728428502
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -34942.6969941654
+	Block  5/5 statistics:
+	# samples: 260
+	⟨N⟩ (molecules) = [6.165384615384616, 8.626923076923077]
+	⟨U_gh, vdw⟩ (K) = -35699.7627654877
+	⟨U_gh, Coulomb⟩ (K) = 0.0
+	⟨U_gg, vdw⟩ (K) = -94.05769003784474
+	⟨U_gg, Coulomb⟩ (K) = 0.0
+	⟨U⟩ (K) = -35793.82045552554
+	Estimated elapsed time: 5 seconds
+	Total # MC steps: 2600
+
+Unit cell replication factors: 3 3 5
+
+
+# sample cycles: 65
+# burn cycles: 65
+# samples: 1300
+reinsertion	115 total proposals.
+	0.869565 % proposals accepted.
+identity change	229 total proposals.
+	52.401747 % proposals accepted.
+deletion	805 total proposals.
+	3.602484 % proposals accepted.
+translation	602 total proposals.
+	36.544850 % proposals accepted.
+insertion	849 total proposals.
+	4.829211 % proposals accepted.
+
+Kr
+⟨N⟩ (molecules): 6.808462 +/- 0.475983
+⟨N⟩ (molecules/unit cell): 0.151299 +/- 0.010577
+⟨N⟩ (mmol/g): 0.194397 +/- 0.013590
+
+Xe
+⟨N⟩ (molecules): 7.030000 +/- 1.164392
+⟨N⟩ (molecules/unit cell): 0.156222 +/- 0.025875
+⟨N⟩ (mmol/g): 0.200722 +/- 0.033246
+
+⟨U_gg, vdw⟩ (K): -76.268465 +/- 34.849579
+⟨U_gh, vdw⟩ (K): -32539.360172 +/- 2819.055790
+⟨U_gg, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U_gh, electro⟩ (K): 0.000000 +/- 0.000000
+⟨U⟩ (K): -32615.628637 +/- 2853.905368
+
+Q_st (K) = 178683.070725 = 1485.571050 kJ/mol
+
+
+Q_st (K) = 80272.150054 = 667.382656 kJ/mol
+
+	results dictionary saved in /nfs/stak/users/gantzlen/Mixture_Sim_Benchmarking/data/simulations/muVT_xtal_05000N2.cif_T_298.000K_Kr_P_0.800000bar_Xe_P_0.200000bar_UFF_65burn_65sample.jld2

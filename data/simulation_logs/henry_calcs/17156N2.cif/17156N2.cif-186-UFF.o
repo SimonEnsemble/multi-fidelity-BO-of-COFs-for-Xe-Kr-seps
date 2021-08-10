@@ -1,0 +1,62 @@
+Tue Jul 27 16:19:49 PDT 2021
+running mol sim in 17156N2.cif with 186 cycles and UFF
+Simulating Henry coefficient of Kr in 17156N2.cif at 298.0 K, using UFF force field with 186 insertions per Å³.
+	1493212 total # particle insertions
+	Replicating crystal 1 by 1 by 5 for short-range cutoff 14.00
+	Block  1/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 0.7108023561178537
+	⟨U, vdw⟩ (K): -1945.2995508531603
+	⟨U, es⟩ (K): 0.0
+	Block  2/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 0.6969739470521786
+	⟨U, vdw⟩ (K): -1948.4722154423646
+	⟨U, es⟩ (K): 0.0
+	Block  3/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 0.7032596876202563
+	⟨U, vdw⟩ (K): -1943.8361145374245
+	⟨U, es⟩ (K): 0.0
+	Block  4/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 0.7098257768480171
+	⟨U, vdw⟩ (K): -1952.8352852621176
+	⟨U, es⟩ (K): 0.0
+	Block  5/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 0.6843746141831799
+	⟨U, vdw⟩ (K): -1941.1341047460644
+	⟨U, es⟩ (K): 0.0
+	Results saved in: /nfs/stak/users/gantzlen/Mixture_Sim_Benchmarking/data/simulations/henry_sim_Kr_in_17156N2.cif_298.000000K_UFF_ff_186_insertions_per_volume.jld2
+	Elapsed time (min): 4.292996716499329
+	----- final results ----
+	henry coefficient [mmol/(g-bar)] = 0.701047 +/- 0.009713
+	⟨U, vdw⟩ (kJ/mol) = -16.182562 +/- 0.033503
+	⟨U, es⟩ (kJ/mol) = 0.000000 +/- 0.000000
+	Qst (kJ/mol) = 18.660271 +/- 0.033503
+Simulating Henry coefficient of Xe in 17156N2.cif at 298.0 K, using UFF force field with 186 insertions per Å³.
+	1493212 total # particle insertions
+	Replicating crystal 1 by 1 by 5 for short-range cutoff 14.00
+	Block  1/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 5.990089283192669
+	⟨U, vdw⟩ (K): -2731.436212274249
+	⟨U, es⟩ (K): 0.0
+	Block  2/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 6.023505119545802
+	⟨U, vdw⟩ (K): -2743.9581258211983
+	⟨U, es⟩ (K): 0.0
+	Block  3/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 5.889866575556673
+	⟨U, vdw⟩ (K): -2726.2827926429895
+	⟨U, es⟩ (K): 0.0
+	Block  4/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 5.814541553309597
+	⟨U, vdw⟩ (K): -2725.1010088063813
+	⟨U, es⟩ (K): 0.0
+	Block  5/5 statistics:
+	Henry coeff. [mmol/(g-bar)]: 5.80697982475986
+	⟨U, vdw⟩ (K): -2730.8864348953193
+	⟨U, es⟩ (K): 0.0
+	Results saved in: /nfs/stak/users/gantzlen/Mixture_Sim_Benchmarking/data/simulations/henry_sim_Xe_in_17156N2.cif_298.000000K_UFF_ff_186_insertions_per_volume.jld2
+	Elapsed time (min): 3.4067474643389386
+	----- final results ----
+	henry coefficient [mmol/(g-bar)] = 5.904996 +/- 0.088660
+	⟨U, vdw⟩ (kJ/mol) = -22.711221 +/- 0.055619
+	⟨U, es⟩ (kJ/mol) = 0.000000 +/- 0.000000
+	Qst (kJ/mol) = 25.188930 +/- 0.055619
