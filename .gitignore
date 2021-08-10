@@ -1,5 +1,6 @@
 ## ignore papers and images ##
 *.pdf
+*.docx
 *.png
 ## ignore simulation output and error files
 *.e

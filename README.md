@@ -1,0 +1,2 @@
+- `benchmarking_sims` contains code and analysis to determine # cycles vs error for GCMC simulations and Henry Coefficients.
+- `data` contains simulation input and output files
