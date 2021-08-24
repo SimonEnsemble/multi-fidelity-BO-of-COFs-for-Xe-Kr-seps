@@ -5,3 +5,5 @@
 ## ignore simulation output and error files
 *.e
 *.o
+## ignore zipped files
+*.zip
