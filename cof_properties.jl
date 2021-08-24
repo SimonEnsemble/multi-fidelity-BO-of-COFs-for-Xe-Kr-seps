@@ -12,9 +12,13 @@ ljff = LJForceField("UFF")
 
 unique_elements = Symbol[]
 for cof_name in cof_names
-    tmp_xtal = Crystal(cof_name; check_overlap=false);
+    tmp_xtal = Crystal(cof_name; check_overlap=false, check_neutrality=false);
     for species in unique(tmp_xtal.atoms.species)
         species in unique_elements ? continue : push!(unique_elements, species)
+    end
+
+    if :Zn in keys(chemical_formula(tmp_xtal)) 
+        println(tmp_xtal.name)
     end
 
     # check forcefield coverage
