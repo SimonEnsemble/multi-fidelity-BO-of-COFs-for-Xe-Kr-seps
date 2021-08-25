@@ -7,3 +7,5 @@
 *.o
 ## ignore zipped files
 *.zip
+# ignore a specific directory
+./benchmarking_sims/simulations/*.jld2
