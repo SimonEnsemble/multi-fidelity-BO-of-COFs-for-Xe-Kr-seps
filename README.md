@@ -1,2 +1,4 @@
-- `benchmarking_sims` contains code and analysis to determine # cycles vs error for GCMC simulations and Henry Coefficients.
 - `data` contains simulation input and output files
+- `benchmarking_sims` contains code and analysis to determine # cycles vs error for GCMC simulations and Henry Coefficients.
+- `htc_screening` contains code to run and analyze the high-throughput comuptational screening of the COFs in `./data/crystals`.
+- `fitting_parameters` contains the scritps used to generate the data used in training the Gaussian Process.
