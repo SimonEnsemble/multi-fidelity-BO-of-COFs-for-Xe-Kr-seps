@@ -1,6 +1,4 @@
 using PorousMaterials
-# set file paths
-set_paths(joinpath(pwd(), "../data"))
 
 ###
 #  Read command line arguments: name of crystal structure, number of MC cycles, and Henry flag
@@ -14,13 +12,17 @@ num_str  = ARGS[2] # number of MC cycles or insertions per volume
 henry    = ARGS[3] # flag for Henry calculation
 
 is_henry = parse(Bool, henry)
-n_cycles = parse(Int64, num_str)
+ins_per_vol = parse(Int64, num_str)
 
+###
+#  set file paths
+###
+set_paths(joinpath(pwd(), "../data"))
 
 ###
 #  Set Simulation Parameters and keyword arguments
 ###
-xtal = Crystal(crystal; check_overlap=false, check_neutrality=false);
+xtal = Crystal(crystal; check_neutrality=false);
 adsorbates = [Molecule("Kr"), Molecule("Xe")]
 mol_fractions = [0.8, 0.2] # [Kr, Xe]
 total_pressure = 1.0       # bar
@@ -29,8 +31,8 @@ temperature = 298.0 # K
 ljff = LJForceField("UFF")
 
 # additional keyword arguments
-kwargs = Dict(:n_burn_cycles   => n_cycles, 
-              :n_sample_cycles => n_cycles
+kwargs = Dict(:n_burn_cycles   => ins_per_vol, 
+              :n_sample_cycles => ins_per_vol
              )
 
 ###
@@ -38,7 +40,7 @@ kwargs = Dict(:n_burn_cycles   => n_cycles,
 ###
 if is_henry
     for gas in adsorbates
-        results = henry_coefficient(xtal, gas, temperature, ljff; insertions_per_volume=n_cycles)
+        results = henry_coefficient(xtal, gas, temperature, ljff; insertions_per_volume=ins_per_vol)
     end
 else
     results = μVT_sim(xtal, adsorbates, temperature, partial_pressures, ljff; kwargs...)

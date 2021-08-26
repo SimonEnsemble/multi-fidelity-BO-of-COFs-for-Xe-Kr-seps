@@ -6,7 +6,7 @@ is_henry=false
 ljff="UFF"
 
 # get input (optional) arguments
-while getopts H:g:b:l:u:n: flag
+while getopts H: flag
 do
     case "${flag}" in
         H) is_henry=${OPTARG};;
@@ -15,9 +15,9 @@ done
 
 if $is_henry
 then
-    number_of_cycles = 300 
+    ins_per_vol=500 # insertions per volume
 else
-    number_of_cycles = 100000
+    ins_per_vol=100000
 fi
 
 
@@ -35,10 +35,9 @@ do
     # make output directory if it doesn't exist
     mkdir -p $sim_log_loc
 
-    echo "submitting job for $xtal with $n_cycles cycles"
-    sbatch -J "$xtal-$n_cycles-$ljff" -A simon-grp -p mime5 -n 1 \
-        --mail-type=ALL --mail-user=gantzlen \
-        -o $sim_log_loc/"$xtal-$n_cycles-$ljff.o" \
-        -e $sim_log_loc/"$xtal-$n_cycles-$ljff.e" \
-        --export=xtal="$xtal",n_cycles="$number_of_cycles" gcmc_submit.sh $is_henry
+    echo "submitting job for $xtal with $number_of_cycles cycles"
+    sbatch -J "$xtal-$ins_per_vol-$ljff" -A simon-grp -p mime5 -n 1 \
+        -o $sim_log_loc/"$xtal-$ins_per_vol-$ljff.o" \
+        -e $sim_log_loc/"$xtal-$ins_per_vol-$ljff.e" \
+        --export=xtal="$xtal",ins_per_vol="$ins_per_vol" simulation_submit.sh $is_henry
 done

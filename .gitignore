@@ -7,5 +7,9 @@
 *.o
 ## ignore zipped files
 *.zip
+## ignore Zeo++ output files
+*.res
+*.chan
+*.sa
 # ignore a specific directory
 ./benchmarking_sims/simulations/*.jld2
