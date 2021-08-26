@@ -8,7 +8,7 @@ crystals_loc=../data/crystals
 output_loc=./zeo_outputs
 mkdir -p $output_loc
 
-for xtal in $(cat ./tmp_cof_names.txt)
+for xtal in $(cat ./cof_names.txt)
 do
     ~/zeo++-0.3/network -stripatomnames -ha -res $output_loc/$xtal.res \
                         -vol $probe_radius $probe_radius 10*$num_samples $output_loc/$xtal.vol \
