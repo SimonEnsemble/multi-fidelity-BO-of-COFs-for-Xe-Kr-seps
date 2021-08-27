@@ -25,4 +25,4 @@ echo "#### END ####" `date`
 
 
 # run julia script to compile desired quantities into CSV
-# julia compile_zeo_results.jl
+julia compile_zeo_results.jl
