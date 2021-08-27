@@ -79,4 +79,4 @@ for cof_name in cof_names
     push!(df, row)
 end
 
-CSV.write(joinpath(pwd(), "geometroc_properties.csv"), df)
+CSV.write(joinpath(pwd(), "geometric_properties.csv"), df)

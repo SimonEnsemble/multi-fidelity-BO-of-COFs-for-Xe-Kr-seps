@@ -36,7 +36,7 @@ kwargs = Dict(:n_burn_cycles   => ins_per_vol,
              )
 
 ###
-#  Run simulation
+#  Run simulation(s)
 ###
 if is_henry
     for gas in adsorbates

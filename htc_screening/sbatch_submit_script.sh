@@ -13,12 +13,7 @@ do
     esac
 done
 
-if $is_henry
-then
-    ins_per_vol=500 # insertions per volume
-else
-    ins_per_vol=100000
-fi
+ins_per_vol=500 # insertions (GCMC: cycles) per volume
 
 
 # loop over the xtal names in AA_mofs_to_sim.txt
@@ -35,7 +30,7 @@ do
     # make output directory if it doesn't exist
     mkdir -p $sim_log_loc
 
-    echo "submitting job for $xtal with $number_of_cycles cycles"
+    echo "submitting job for $xtal"
     sbatch -J "$xtal-$ins_per_vol-$ljff" -A simon-grp -p mime5 -n 1 \
         -o $sim_log_loc/"$xtal-$ins_per_vol-$ljff.o" \
         -e $sim_log_loc/"$xtal-$ins_per_vol-$ljff.e" \

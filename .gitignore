@@ -11,5 +11,6 @@
 *.res
 *.chan
 *.sa
+*.vol
 # ignore a specific directory
 ./benchmarking_sims/simulations/*.jld2
