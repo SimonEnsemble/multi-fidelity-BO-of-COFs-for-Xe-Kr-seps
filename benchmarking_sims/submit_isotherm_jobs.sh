@@ -5,15 +5,10 @@ module load slurm
 is_henry=false\
 gas="Xe"
 # get input (optional) arguments
-while getopts H:g:b:l:u:n: flag
+while getopts H: flag
 do
     case "${flag}" in
         H) is_henry=${OPTARG};;
-        g) gas=${OPTARG};;
-        b) base=$OPTARG;;
-        l) lower_bound=$OPTARG;;
-        u) upper_bound=$OPTARG;;
-        n) nstep=$OPTARG;;
     esac
 done
 
@@ -45,17 +40,20 @@ do
     mkdir -p $sim_log_loc
 
     # loop over the number of cycles
-    for n_cycles in $number_of_cycles  #$(cat $n_cycle_loc)
+    for n_cycles in $(cat $n_cycle_loc) #$number_of_cycles 
     do
+        # don't want to overwhelm system
+        sleep 0.25
+ 
         # loop over forcefields
         for ljff in UFF # Dreiding
         do 
         echo "submitting job for $gas in $xtal with $n_cycles cycles using $ljff"
         sbatch -J "$xtal-$n_cycles-$ljff" -A simon-grp -p mime5 -n 1 \
-            --mail-type=ALL --mail-user=gantzlen \
+            --mail-type=END,FAIL --mail-user=gantzlen \
             -o $sim_log_loc/"$xtal-$n_cycles-$ljff.o" \
             -e $sim_log_loc/"$xtal-$n_cycles-$ljff.e" \
-            --export=xtal="$xtal",n_cycles="$n_cycles",ljff="$ljff",gas="$gas" gcmc_submit.sh $is_henry
+            --export=xtal="$xtal",n_cycles="$n_cycles",ljff="$ljff" gcmc_submit.sh $is_henry
         done
     done
 done
