@@ -1,20 +1,20 @@
 using PorousMaterials
 # set file paths
-set_paths(joinpath(pwd(), "../data"))
+# set_paths(joinpath(pwd(), "../data"))
 
 ###
 #  Read command line arguments: name of - crystal structure, adsorbate, and forcefield
 ###
-if length(ARGS) != 4
+if length(ARGS) != 3
     error("pass the crystal structure name as a command line argument followed by the number of cycles then the forcefield,
- 	such as: julia cof_isotherm_sim.jl COF-102.cif 5000 UFF henry gas")
+ 	such as: julia cof_isotherm_sim.jl COF-102.cif 5000  true")
 end
+
 crystal  = ARGS[1]
 num_str  = ARGS[2]
-ffield   = ARGS[3]
-henry    = ARGS[4]
+henry    = ARGS[3]
 
-println("running mol sim", gas, " in ", crystal, " with ", num_str, " cycles and ", ffield)
+println("running mol sim on", crystal, " with ", num_str, " cycles")
 
 is_henry = parse(Bool, henry)
 n_cycles = parse(Int64, num_str)
@@ -31,7 +31,7 @@ sim_params = Dict("xtal"        => Crystal(crystal),
                   "molecules"   => [Molecule("Kr"), Molecule("Xe")],
                   "temperature" => 298.0,
                   "pressures"   => partial_pressures,
-                  "ljff"        => LJForceField(ffield)
+                  "ljff"        => LJForceField("UFF")
                  )
 
 strip_numbers_from_atom_labels!(sim_params["xtal"])
@@ -46,7 +46,7 @@ kwargs = Dict(:n_burn_cycles   => n_cycles,
 if is_henry
     for gas in sim_params["molecules"]
         results = henry_coefficient(sim_params["xtal"], 
-                                    Molecule(gas), 
+                                    gas, 
                                     sim_params["temperature"],
                                     sim_params["ljff"];
                                     insertions_per_volume=n_cycles

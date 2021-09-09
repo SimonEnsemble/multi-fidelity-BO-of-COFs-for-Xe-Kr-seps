@@ -14,9 +14,9 @@ done
 
 if $is_henry
 then
-    number_of_cycles = 300 
+    number_of_cycles=500 
 else
-    number_of_cycles = 100000
+    number_of_cycles=100000
 fi
 
 # julia print_num_cyc.jl $base $lower_bound $upper_bound $nstep > ./AA_num_cycles.txt
@@ -53,7 +53,7 @@ do
             --mail-type=END,FAIL --mail-user=gantzlen \
             -o $sim_log_loc/"$xtal-$n_cycles-$ljff.o" \
             -e $sim_log_loc/"$xtal-$n_cycles-$ljff.e" \
-            --export=xtal="$xtal",n_cycles="$n_cycles",ljff="$ljff" gcmc_submit.sh $is_henry
+            --export=xtal="$xtal",n_cycles="$n_cycles" gcmc_submit.sh $is_henry
         done
     done
 done
