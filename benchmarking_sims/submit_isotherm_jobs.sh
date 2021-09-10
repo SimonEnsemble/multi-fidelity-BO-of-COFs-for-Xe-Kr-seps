@@ -20,14 +20,14 @@ done
 for xtal in $(cat ./AA_cofs_to_sim.txt)
 do
     # define simulation logs output directory
-    sim_log_loc=../data/simulation_logs/$xtal
+    sim_log_loc=./data/simulation_logs/$xtal
 
     # define file with cycles or insertion
     n_cycle_loc=./AA_ins_per_vol.txt #./AA_num_cycles.txt
 
     if $is_henry; 
     then
-        sim_log_loc=../data/simulation_logs/henry_calcs/$xtal 
+        sim_log_loc=./data/simulation_logs/henry_calcs/$xtal 
         n_cycle_loc=./AA_ins_per_vol.txt
     fi
 
@@ -35,7 +35,7 @@ do
     mkdir -p $sim_log_loc
 
     # loop over the number of cycles
-    for n_cycles in $(cat $n_cycle_loc) #$number_of_cycles 
+    for n_cycles in $(cat $n_cycle_loc) 
     do
         # don't want to overwhelm system
         sleep 0.25
