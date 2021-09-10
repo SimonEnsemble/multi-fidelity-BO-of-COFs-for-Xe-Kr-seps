@@ -35,7 +35,7 @@ do
     mkdir -p $sim_log_loc
 
     # loop over the number of cycles
-    for n_cycles in $(cat $n_cycle_loc) #$number_of_cycles 
+    for n_cycles in 25 #$(cat $n_cycle_loc) #$number_of_cycles 
     do
         # don't want to overwhelm system
         sleep 0.25
