@@ -37,8 +37,6 @@ if is_henry
     end
 else
     # additional keyword arguments
-    kwargs = Dict(:n_burn_cycles   => nb_insertions_per_volume, 
-                  :n_sample_cycles => nb_insertions_per_volume 
-                 )
+    kwargs = Dict(:n_cycles_per_volume   => nb_insertions_per_volume)
     results = μVT_sim(xtal, adsorbates, temperature, partial_pressures, ljff; kwargs...)
 end
