@@ -36,9 +36,7 @@ sim_params = Dict("xtal"        => Crystal(crystal),
 
 strip_numbers_from_atom_labels!(sim_params["xtal"])
 
-kwargs = Dict(:n_burn_cycles   => n_cycles, 
-              :n_sample_cycles => n_cycles,
-             )
+kwargs = Dict(:n_cycles_per_volume => n_cycles)
 
 ###
 #  Run simulation

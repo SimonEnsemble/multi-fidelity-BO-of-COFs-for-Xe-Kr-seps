@@ -2,8 +2,11 @@
 # we need to load Slurm so we can submit our jobs with sbatch
 module load slurm
 
-is_henry=false\
-gas="Xe"
+# set default values
+is_henry=false
+gas=Xe
+number_of_cycles=500
+
 # get input (optional) arguments
 while getopts H: flag
 do
@@ -12,14 +15,6 @@ do
     esac
 done
 
-if $is_henry
-then
-    number_of_cycles=500 
-else
-    number_of_cycles=100000
-fi
-
-# julia print_num_cyc.jl $base $lower_bound $upper_bound $nstep > ./AA_num_cycles.txt
 
 # loop over the xtal names in AA_mofs_to_sim.txt
 for xtal in $(cat ./AA_cofs_to_sim.txt)
@@ -28,7 +23,7 @@ do
     sim_log_loc=../data/simulation_logs/$xtal
 
     # define file with cycles or insertion
-    n_cycle_loc=./AA_num_cycles.txt
+    n_cycle_loc=./AA_ins_per_vol.txt #./AA_num_cycles.txt
 
     if $is_henry; 
     then
@@ -48,7 +43,7 @@ do
         # loop over forcefields
         for ljff in UFF # Dreiding
         do 
-        echo "submitting job for $gas in $xtal with $n_cycles cycles using $ljff"
+        echo "submitting job $xtal with $n_cycles cycles"
         sbatch -J "$xtal-$n_cycles-$ljff" -A simon-grp -p mime5 -n 1 \
             --mail-type=END,FAIL --mail-user=gantzlen \
             -o $sim_log_loc/"$xtal-$n_cycles-$ljff.o" \
