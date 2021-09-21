@@ -22,7 +22,7 @@ fi
 
 
 # loop over the xtal names in AA_mofs_to_sim.txt
-for xtal in $(cat ./AA_cofs_to_sim.txt)
+for xtal in 07012N3_ddec.cif #$(cat ./AA_cofs_to_sim.txt)
 do
     sleep 0.25 # don't overwhelm cluster
 
