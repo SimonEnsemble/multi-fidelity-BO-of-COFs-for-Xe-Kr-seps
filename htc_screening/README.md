@@ -4,3 +4,5 @@ This directory contains files nessecary for running the GCMC (high fidelity) and
 - `sbatch_submit_script.sh`: bash script that submits jobs to Slurm
     note: must pass `-H true` flag in order to run Henry calculations
 - `simulation_submit.sh`: bash script used by Slurm to exicute simulation script
+
+Note: `--mem=4G` used on `14040N2_ddec.cif` to resolve `OUT_OF_MEMORY` error message from SLURM.

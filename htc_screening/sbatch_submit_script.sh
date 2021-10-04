@@ -16,7 +16,7 @@ done
 ins_per_vol=500 # insertions (cycles) per volume
 
 # loop over the xtal names in AA_mofs_to_sim.txt
-for xtal in 07012N3_ddec.cif 14040N2_ddec.cif 16290N3_ddec.cif 21111N3_ddec.cif  #$(cat ./AA_cofs_to_sim.txt)
+for xtal in $(cat ./AA_cofs_to_sim.txt)
 do
     sleep 0.25 # don't overwhelm cluster
 
