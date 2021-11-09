@@ -11,16 +11,16 @@ begin
 	using StatsBase # Statistics
 	using Distributions
 	using PyCall
-	
 	using ScikitLearn # machine learning package
-	@sk_import gaussian_process : GaussianProcessRegressor
-	@sk_import gaussian_process.kernels : Matern
 	
 	# config plot settings
 	PyPlot.matplotlib.style.use("ggplot")
 	rcParams = PyPlot.PyDict(PyPlot.matplotlib."rcParams")
-	rcParams["font.size"] = 16;
+	rcParams["font.size"] = 14;
 end
+
+# ╔═╡ a9850e5c-a28f-49f7-8fb6-d0358b440996
+using PlutoUI
 
 # ╔═╡ 546656d5-48de-41fc-91f7-1da6a2e1fbc2
 md"**I need to figure out how (on which cmputer) I am going to give this presentation**"
@@ -37,11 +37,127 @@ PROMPT --
 md"""
 ## Part 1: Multi-ouput Gaussian Processes (MOGP)
 ### 1.1 Review of GP
-	(a) Properties of Multi-varriate Gaussians
-	(b) Covariance and Kernel functions
+	(a) What is a GP (broadly)?
 """
 
 # ╔═╡ 15f17cfe-ed5e-48e0-83e1-79382a85cb08
+md"""
+- A Gaussian process is a probabilistic method that gives a confidence interval for the predicted function
+
+- "For a given set of training points, there are, potentially, infinitely many functions that fit the data. Gaussian Processes offer an elegant soluton to this problem by assigning a probability to each of these functions"
+
+**Ex:** The first function that attemps to fit the data is *less likely* to be that actual data-generating function than the second fit. 
+
+note -- would it be a good idea to put error bars on the data and show how those error are normally distributed? Also, do the probabilities of each fitting function have their own distribution (i.e. error bars normally distributed within the probability function)?
+"""
+
+# ╔═╡ 15066ae2-ea35-4353-ad03-fad595019c34
+begin 
+	# generate data and fit functions
+	x1 = range(-1.0, stop=1.0, length=25)    # domain of data
+	y1 = x1 .* x1 .+ 1.0                     # fit 1: quadratic 
+	y2 = 0.5 * (exp.(-1 * x1) .+ exp.(x1))   # fit 2: hyperbolic cosine
+	noise = rand(Normal(0, 0.1), length(x1)) # Normally distributed random noise 
+	max_noise = maximum(noise)
+	# generate figure
+	fig, axs = subplots(1, 2, figsize=(10,5))
+	# plot data
+	axs[1].scatter(x1, y2 .+ noise, label="data", color="C0")
+	# plot fit 1
+	axs[1].fill_between(x1, y1.-max_noise, y1.+max_noise, 
+						color="C1", alpha=0.15, hatch="-")
+	axs[1].plot(x1, y1, label="fit 1", color="C1")
+	
+	# plot fit 2
+	axs[1].fill_between(x1, y2.-max_noise, y2.+max_noise, 
+						color="C2", alpha=0.15, hatch="/")
+	axs[1].plot(x1, y2, label="fit 2", color="C2")
+	axs[1].set_ylim(ymin=0.0)
+	axs[1].set_xlim([-1.03, 1.03])
+	axs[1].set_xlabel("x")
+	axs[1].set_ylabel("y")
+	axs[1].legend()
+	# generate probability distribution for fit functions
+	μ = 0.5; σ = 0.2
+	x2 = range(0.0, stop=1.0, length=100)
+	y3 = 0.5 .* (1 ./ (σ .* sqrt(2*π))) .* exp.(-0.5 .* ((x2.-μ)./σ).^2)
+	axs[2].plot(x2, y3)
+	axs[2].fill_between(x2, zeros(length(x2)), y3, color="C4", alpha=0.3, hatch="//")
+	axs[2].scatter([0.8], [0.28], label="fit 1", 
+				   facecolor="C1", edgecolor="k", linewidth=0.75, zorder=3)
+	axs[2].scatter([0.4], [0.85], label="fit 2", 
+				   facecolor="C2", edgecolor="k", linewidth=0.75, zorder=3)
+	axs[2].set_ylim(ymin=0.0)
+	axs[2].set_xlim([0.0, 1.0])
+	axs[2].set_ylabel("probability")
+	axs[2].set_xlabel("function space")
+	axs[2].set_xticks(range(0.0, stop=1.0, length=5))
+	axs[2].set_xticklabels(["", "", L"μ_{f}", "", ""])
+	axs[2].legend()
+	gcf()
+end
+
+# ╔═╡ d5e92de2-4bd4-4882-80bb-6a34e0b14258
+md"The mean ($μ_{f}$) of the probability distribution represents the *most probable* characterization of the data."
+
+# ╔═╡ e920b1b8-dd14-4dd8-b4e7-250074602c45
+
+
+# ╔═╡ 73e98915-09ff-4bef-b474-d28f2a43bee7
+md"""
+	(b) Properties of Multi-varriate Gaussians
+"""
+
+# ╔═╡ 60a81b29-678d-46fb-adf4-e67a6f11b7c5
+md"""
+Each random variable is distributed normally and their joint distribution is also Gaussian. Here, random variables correspnd to the attributes of our feature vectors which represent the materials.
+
+Material Features:
+
+Chemical Composition | Structural (geometric)
+:------ | :--------
+Density of Hydrogen [m⁻³] | Pore diameter [Å]
+Density of Carbon [m⁻³] | Void fraction
+Density of Oxygen [m⁻³] | Surface area [m² g⁻¹]
+Density of Nitrogen [m⁻³] | Crystal mass density [kg m⁻³]
+Density of Silicon [m⁻³] | 
+Density of Sulfur [m⁻³] | 
+Density of Boron [m⁻³] | 
+Density of Phosphorus [m⁻³] | 
+Density of Halogens [m⁻³] | 
+Density of Metals [m⁻³] | 
+
+"""
+
+# ╔═╡ 2634b302-4b64-442f-b2bf-61b8d2bfa93e
+L"""
+	X = \begin{bmatrix}
+		   x_{1} \\
+		   x_{2} \\
+		   \vdots \\
+		   x_{n}
+		 \end{bmatrix} ∼ \mathcal{N}(μ, Σ)
+"""
+
+# ╔═╡ c1c9294e-2c7a-4f4d-915e-657a7bb17cfd
+md"""
+Each of the components of μ describes the mean of the corresponding dimension in feature space. The covariance matrix Σ is "shape" of the distribution in that dimension, defined as:
+"""
+
+# ╔═╡ bdadf89a-8f6f-4365-a6b5-aadc02dbb7f1
+L"""
+	Σ = cov(xᵢ, xⱼ) = ⟨(xᵢ - μᵢ)(xⱼ - μⱼ)ᵀ⟩
+"""
+
+# ╔═╡ 559628fd-f430-4451-9fa2-27c322919fca
+md"note -- this tells us how correlate the different random variables are!"
+
+# ╔═╡ f48b3498-b046-4b69-913d-755e363b127e
+md"""
+	(c) Covariance and Kernel functions
+"""
+
+# ╔═╡ bd2f75ce-a4ad-4ce5-b01d-21bb87538085
 
 
 # ╔═╡ 275327ae-4461-4084-8f08-eb9f126dda00
@@ -62,7 +178,10 @@ md"""
 """
 
 # ╔═╡ cd23e545-7221-49a2-9184-0cbcb841d8d1
-
+begin
+	@sk_import gaussian_process : GaussianProcessRegressor
+	@sk_import gaussian_process.kernels : Matern
+end
 
 # ╔═╡ 4ab82681-1bea-4f7b-b038-b7110234b55d
 
@@ -82,8 +201,31 @@ md"""
 	(c) Explain why it is relevant and how it is used to inform the search process.
 """
 
+# ╔═╡ 52e2eb62-dcbc-4ba5-bd76-2e8140f77acb
+md"Baye's Rule:"
+
+# ╔═╡ 7751f518-104f-4bcf-976e-894a39ea0a63
+L"""
+$$
+Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}
+$$
+
+$$
+Pr(\theta | y) \propto Pr(y | \theta) Pr(\theta)
+$$
+"""
+
 # ╔═╡ bec28490-0a2c-4c06-b26f-09d451d77eb7
 
+
+# ╔═╡ 3b3cfb03-1e17-4bb5-af9a-96193a066b1e
+
+
+# ╔═╡ d6dc9728-6eb9-47af-8ead-2c983c2e5454
+md"""Explotation-Exploitation trade-off: $(LocalResource("./figs/exploration_exploitation_balance_EI.png"))"""
+
+# ╔═╡ 79a4d88c-1ff1-41af-8c22-86995dd4a500
+md"""Explotation-Exploitation trade-off: $(LocalResource("./figs/search_efficientcy_curve_EI.png"))"""
 
 # ╔═╡ edf8a612-f709-485a-8314-c3692f853823
 md"""
@@ -102,6 +244,9 @@ md"""
 """
 
 # ╔═╡ 016a763b-bbcc-486d-9339-e189e65cf6e7
+
+
+# ╔═╡ e174572e-d44b-4dba-9e6f-31c3a297ff66
 
 
 # ╔═╡ cfa6d959-a5e5-4fdb-bcb5-cd0466c19d63
@@ -126,6 +271,7 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
+PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
 ScikitLearn = "3646fa90-6ef7-5e7e-9f22-8aca16db6324"
@@ -134,6 +280,7 @@ StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 [compat]
 Distributions = "~0.25.24"
 JLD2 = "~0.4.15"
+PlutoUI = "~0.7.18"
 PyCall = "~1.92.5"
 PyPlot = "~2.10.0"
 ScikitLearn = "~0.6.4"
@@ -143,6 +290,12 @@ StatsBase = "~0.33.12"
 # ╔═╡ 00000000-0000-0000-0000-000000000002
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
+
+[[AbstractPlutoDingetjes]]
+deps = ["Pkg"]
+git-tree-sha1 = "0ec322186e078db08ea3e7da5b8b2885c099b393"
+uuid = "6e696c72-6542-2067-7265-42206c756150"
+version = "1.1.0"
 
 [[ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -269,6 +422,23 @@ version = "0.4.2"
 [[Future]]
 deps = ["Random"]
 uuid = "9fa8497b-333b-5362-9e8d-4d0656e87820"
+
+[[Hyperscript]]
+deps = ["Test"]
+git-tree-sha1 = "8d511d5b81240fc8e6802386302675bdf47737b9"
+uuid = "47d2ed2b-36de-50cf-bf87-49c2cf4b8b91"
+version = "0.0.4"
+
+[[HypertextLiteral]]
+git-tree-sha1 = "5efcf53d798efede8fee5b2c8b09284be359bf24"
+uuid = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
+version = "0.9.2"
+
+[[IOCapture]]
+deps = ["Logging", "Random"]
+git-tree-sha1 = "f7be53659ab06ddc986428d3a9dcc95f6fa6705a"
+uuid = "b5f81e59-6552-4d32-b1f0-c071b021bf89"
+version = "0.2.2"
 
 [[InteractiveUtils]]
 deps = ["Markdown"]
@@ -420,6 +590,12 @@ version = "2.1.2"
 [[Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+
+[[PlutoUI]]
+deps = ["AbstractPlutoDingetjes", "Base64", "Dates", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "UUIDs"]
+git-tree-sha1 = "57312c7ecad39566319ccf5aa717a20788eb8c1f"
+uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+version = "0.7.18"
 
 [[PooledArrays]]
 deps = ["DataAPI", "Future"]
@@ -620,21 +796,39 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 
 # ╔═╡ Cell order:
 # ╟─546656d5-48de-41fc-91f7-1da6a2e1fbc2
+# ╠═358c0f22-977a-4388-9a90-fdccde3d2828
 # ╟─498463b9-f73f-40ba-aa2f-eebd545d8dc9
+# ╠═a9850e5c-a28f-49f7-8fb6-d0358b440996
 # ╟─126e90be-757e-4c76-a0a1-4d1bdc68b089
-# ╠═15f17cfe-ed5e-48e0-83e1-79382a85cb08
+# ╟─15f17cfe-ed5e-48e0-83e1-79382a85cb08
+# ╟─15066ae2-ea35-4353-ad03-fad595019c34
+# ╟─d5e92de2-4bd4-4882-80bb-6a34e0b14258
+# ╠═e920b1b8-dd14-4dd8-b4e7-250074602c45
+# ╟─73e98915-09ff-4bef-b474-d28f2a43bee7
+# ╟─60a81b29-678d-46fb-adf4-e67a6f11b7c5
+# ╟─2634b302-4b64-442f-b2bf-61b8d2bfa93e
+# ╟─c1c9294e-2c7a-4f4d-915e-657a7bb17cfd
+# ╟─bdadf89a-8f6f-4365-a6b5-aadc02dbb7f1
+# ╟─559628fd-f430-4451-9fa2-27c322919fca
+# ╟─f48b3498-b046-4b69-913d-755e363b127e
+# ╠═bd2f75ce-a4ad-4ce5-b01d-21bb87538085
 # ╟─275327ae-4461-4084-8f08-eb9f126dda00
 # ╠═8c1a97be-4954-41c6-b76b-b42183a045e9
 # ╟─4ce23d34-a9be-493b-9eb4-dcad2fa35ccc
-# ╠═358c0f22-977a-4388-9a90-fdccde3d2828
 # ╠═cd23e545-7221-49a2-9184-0cbcb841d8d1
 # ╠═4ab82681-1bea-4f7b-b038-b7110234b55d
 # ╟─17e6945f-6745-4f75-b331-bc1b2a24bcf0
+# ╟─52e2eb62-dcbc-4ba5-bd76-2e8140f77acb
+# ╟─7751f518-104f-4bcf-976e-894a39ea0a63
 # ╠═bec28490-0a2c-4c06-b26f-09d451d77eb7
+# ╠═3b3cfb03-1e17-4bb5-af9a-96193a066b1e
+# ╟─d6dc9728-6eb9-47af-8ead-2c983c2e5454
+# ╟─79a4d88c-1ff1-41af-8c22-86995dd4a500
 # ╟─edf8a612-f709-485a-8314-c3692f853823
 # ╠═4dfdb404-ef5e-4168-8c73-b0d079609059
 # ╟─5fb4b058-f6b6-4b80-843f-9c84b30f5dc5
 # ╠═016a763b-bbcc-486d-9339-e189e65cf6e7
+# ╠═e174572e-d44b-4dba-9e6f-31c3a297ff66
 # ╟─cfa6d959-a5e5-4fdb-bcb5-cd0466c19d63
 # ╟─c25fc58e-decc-4ec0-89c6-ee166798b829
 # ╟─00000000-0000-0000-0000-000000000001
