@@ -110,7 +110,7 @@ md"""
 
 # ╔═╡ 60a81b29-678d-46fb-adf4-e67a6f11b7c5
 md"""
-Each COF is represented as a point in feature space, and its position vector is given as a k-dim. random variable (here, k=14). 
+Each random variable is distributed normally and their joint distribution is also Gaussian. Here, random variables correspnd to the attributes of our feature vectors which represent the materials.
 
 Material Features:
 
@@ -135,27 +135,22 @@ L"""
 		   x_{1} \\
 		   x_{2} \\
 		   \vdots \\
-		   x_{k}
+		   x_{n}
 		 \end{bmatrix} ∼ \mathcal{N}(μ, Σ)
 """
 
 # ╔═╡ c1c9294e-2c7a-4f4d-915e-657a7bb17cfd
 md"""
-Each component of μ describes the mean of the corresponding dimension in feature space; however, in GPs, we assume **μ = $\vec{0}$**. 
-
-The covariance matrix Σ is "shape" of the distribution in that dimension, defined as:
+Each of the components of μ describes the mean of the corresponding dimension in feature space. The covariance matrix Σ is "shape" of the distribution in that dimension, defined as:
 """
 
 # ╔═╡ bdadf89a-8f6f-4365-a6b5-aadc02dbb7f1
-L"
-	Σ_{i,j} = cov(x_i, x_j) = ⟨(x_i - μ_i)(x_j - μ_j)⟩
-"
+L"""
+	Σ = cov(xᵢ, xⱼ) = ⟨(xᵢ - μᵢ)(xⱼ - μⱼ)ᵀ⟩
+"""
 
 # ╔═╡ 559628fd-f430-4451-9fa2-27c322919fca
 md"note -- this tells us how correlate the different random variables are!"
-
-# ╔═╡ dc94f20b-8f3c-4dee-972a-3bd8e69040b7
-md"Gaussians are closed under conditioning and marginalization."
 
 # ╔═╡ f48b3498-b046-4b69-913d-755e363b127e
 md"""
@@ -283,9 +278,9 @@ ScikitLearn = "3646fa90-6ef7-5e7e-9f22-8aca16db6324"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
 [compat]
-Distributions = "~0.25.28"
+Distributions = "~0.25.24"
 JLD2 = "~0.4.15"
-PlutoUI = "~0.7.19"
+PlutoUI = "~0.7.18"
 PyCall = "~1.92.5"
 PyPlot = "~2.10.0"
 ScikitLearn = "~0.6.4"
@@ -298,9 +293,9 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 [[AbstractPlutoDingetjes]]
 deps = ["Pkg"]
-git-tree-sha1 = "0bc60e3006ad95b4bb7497698dd7c6d649b9bc06"
+git-tree-sha1 = "0ec322186e078db08ea3e7da5b8b2885c099b393"
 uuid = "6e696c72-6542-2067-7265-42206c756150"
-version = "1.1.1"
+version = "1.1.0"
 
 [[ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -316,12 +311,6 @@ deps = ["Compat", "LinearAlgebra", "SparseArrays"]
 git-tree-sha1 = "f885e7e7c124f8c92650d61b9477b9ac2ee607dd"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
 version = "1.11.1"
-
-[[ChangesOfVariables]]
-deps = ["LinearAlgebra", "Test"]
-git-tree-sha1 = "9a1d594397670492219635b35a3d830b04730d62"
-uuid = "9e997f8a-9a97-42d5-a9f1-ce6bfc15e2c0"
-version = "0.1.1"
 
 [[ColorTypes]]
 deps = ["FixedPointNumbers", "Random"]
@@ -386,21 +375,15 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 deps = ["Mmap"]
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 
-[[DensityInterface]]
-deps = ["InverseFunctions", "Test"]
-git-tree-sha1 = "794daf62dce7df839b8ed446fc59c68db4b5182f"
-uuid = "b429d917-457f-4dbc-8f4c-0cc954292b1d"
-version = "0.3.3"
-
 [[Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
 uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Distributions]]
-deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
-git-tree-sha1 = "cab6fd4d6a0fca4d7f1dcdc2a130884e6ae242c9"
+deps = ["ChainRulesCore", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns"]
+git-tree-sha1 = "72dcda9e19f88d09bf21b5f9507a0bb430bce2aa"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.28"
+version = "0.25.24"
 
 [[DocStringExtensions]]
 deps = ["LibGit2"]
@@ -447,9 +430,9 @@ uuid = "47d2ed2b-36de-50cf-bf87-49c2cf4b8b91"
 version = "0.0.4"
 
 [[HypertextLiteral]]
-git-tree-sha1 = "2b078b5a615c6c0396c77810d92ee8c6f470d238"
+git-tree-sha1 = "5efcf53d798efede8fee5b2c8b09284be359bf24"
 uuid = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
-version = "0.9.3"
+version = "0.9.2"
 
 [[IOCapture]]
 deps = ["Logging", "Random"]
@@ -463,9 +446,9 @@ uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[InverseFunctions]]
 deps = ["Test"]
-git-tree-sha1 = "a7254c0acd8e62f1ac75ad24d5db43f5f19f3c65"
+git-tree-sha1 = "f0c6489b12d28fb4c2103073ec7452f3423bd308"
 uuid = "3587e190-3f89-42d0-90ee-14403ec27112"
-version = "0.1.2"
+version = "0.1.1"
 
 [[InvertedIndices]]
 git-tree-sha1 = "bee5f1ef5bf65df56bdd2e40447590b272a5471f"
@@ -534,10 +517,10 @@ deps = ["Libdl"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [[LogExpFunctions]]
-deps = ["ChainRulesCore", "ChangesOfVariables", "DocStringExtensions", "InverseFunctions", "IrrationalConstants", "LinearAlgebra"]
-git-tree-sha1 = "be9eef9f9d78cecb6f262f3c10da151a6c5ab827"
+deps = ["ChainRulesCore", "DocStringExtensions", "InverseFunctions", "IrrationalConstants", "LinearAlgebra"]
+git-tree-sha1 = "6193c3815f13ba1b78a51ce391db8be016ae9214"
 uuid = "2ab3a3ac-af41-5b50-aa03-7779005ae688"
-version = "0.3.5"
+version = "0.3.4"
 
 [[Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
@@ -610,9 +593,9 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "Dates", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "UUIDs"]
-git-tree-sha1 = "e071adf21e165ea0d904b595544a8e514c8bb42c"
+git-tree-sha1 = "57312c7ecad39566319ccf5aa717a20788eb8c1f"
 uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-version = "0.7.19"
+version = "0.7.18"
 
 [[PooledArrays]]
 deps = ["DataAPI", "Future"]
@@ -742,10 +725,10 @@ uuid = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 version = "0.33.12"
 
 [[StatsFuns]]
-deps = ["ChainRulesCore", "InverseFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
-git-tree-sha1 = "385ab64e64e79f0cd7cfcf897169b91ebbb2d6c8"
+deps = ["ChainRulesCore", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
+git-tree-sha1 = "95072ef1a22b057b1e80f73c2a89ad238ae4cfff"
 uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
-version = "0.9.13"
+version = "0.9.12"
 
 [[SuiteSparse]]
 deps = ["Libdl", "LinearAlgebra", "Serialization", "SparseArrays"]
@@ -827,7 +810,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─c1c9294e-2c7a-4f4d-915e-657a7bb17cfd
 # ╟─bdadf89a-8f6f-4365-a6b5-aadc02dbb7f1
 # ╟─559628fd-f430-4451-9fa2-27c322919fca
-# ╟─dc94f20b-8f3c-4dee-972a-3bd8e69040b7
 # ╟─f48b3498-b046-4b69-913d-755e363b127e
 # ╠═bd2f75ce-a4ad-4ce5-b01d-21bb87538085
 # ╟─275327ae-4461-4084-8f08-eb9f126dda00
