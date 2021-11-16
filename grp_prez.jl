@@ -159,6 +159,18 @@ md"note -- this tells us how correlate the different random variables are!"
 # ╔═╡ dc94f20b-8f3c-4dee-972a-3bd8e69040b7
 md"Gaussians are closed under conditioning and marginalization."
 
+# ╔═╡ 52fecda3-22b2-4464-b4c9-f187570a5888
+
+
+# ╔═╡ 17097d9c-350c-4610-92ed-771e31130b67
+md"In order to perform regression on the training data, we will treat this problem as Bayesian inference. The essential idea of Bayesian inference is to update the current hypothesis as new information becomes available."
+
+# ╔═╡ 30b23910-efd8-45b1-bf30-a09eb32faa47
+md"The posterior distribution - f(x)|y ∼ ... which tells us the likelihood of our observation given the current data"
+
+# ╔═╡ 4c0decab-0379-492e-9de4-ebc6e61efdc9
+md"The prior distribution will have the same dimensionality as the number of test points N = |X|"
+
 # ╔═╡ f48b3498-b046-4b69-913d-755e363b127e
 md"""
 	(c) Covariance and Kernel functions
@@ -234,7 +246,7 @@ $$
 """
 
 # ╔═╡ 3b3cfb03-1e17-4bb5-af9a-96193a066b1e
-md"**The GP specifies our *prior* beliefs about the properties of hte function we are modeling.** The *likelihod function* models how he observations deviate from the assumed *true* model in te generative process."
+md"**The GP specifies our *prior* beliefs about the properties of the function we are modeling.** The *likelihod function* models how he observations deviate from the assumed *true* model in te generative process."
 
 # ╔═╡ d6dc9728-6eb9-47af-8ead-2c983c2e5454
 md"""Explotation-Exploitation trade-off: $(LocalResource("./figs/exploration_exploitation_balance_EI.png"))"""
@@ -838,6 +850,10 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─bdadf89a-8f6f-4365-a6b5-aadc02dbb7f1
 # ╟─559628fd-f430-4451-9fa2-27c322919fca
 # ╟─dc94f20b-8f3c-4dee-972a-3bd8e69040b7
+# ╠═52fecda3-22b2-4464-b4c9-f187570a5888
+# ╟─17097d9c-350c-4610-92ed-771e31130b67
+# ╟─30b23910-efd8-45b1-bf30-a09eb32faa47
+# ╠═4c0decab-0379-492e-9de4-ebc6e61efdc9
 # ╟─f48b3498-b046-4b69-913d-755e363b127e
 # ╠═bd2f75ce-a4ad-4ce5-b01d-21bb87538085
 # ╟─275327ae-4461-4084-8f08-eb9f126dda00
