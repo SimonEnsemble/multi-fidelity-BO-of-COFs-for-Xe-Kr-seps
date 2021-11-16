@@ -49,6 +49,8 @@ md"""
 **Ex:** The first function that attemps to fit the data is *less likely* to be that actual data-generating function than the second fit. 
 
 note -- would it be a good idea to put error bars on the data and show how those error are normally distributed? Also, do the probabilities of each fitting function have their own distribution (i.e. error bars normally distributed within the probability function)?
+
+Should I use lagrange polynomial fr one of these functions?
 """
 
 # ╔═╡ 15066ae2-ea35-4353-ad03-fad595019c34
@@ -173,6 +175,14 @@ md"""
 """
 
 # ╔═╡ 8c1a97be-4954-41c6-b76b-b42183a045e9
+md"""
+The input *Χ* is a vector space, the output space Y is also a vector space, and the estimator function is now a vector-valued function **f**. The strategy is to solve *n* distict problems where each problem is described by he components f₁,...,fₙ; but, we assume that they are related i.e. information from one fᵢ can give us information about another fⱼ.
+"""
+
+# ╔═╡ 2563b54f-f6c2-4ef1-8fba-3a8aa11da45e
+
+
+# ╔═╡ df62da12-723e-4497-9370-9f1b26178f09
 
 
 # ╔═╡ 4ce23d34-a9be-493b-9eb4-dcad2fa35ccc
@@ -224,7 +234,7 @@ $$
 """
 
 # ╔═╡ 3b3cfb03-1e17-4bb5-af9a-96193a066b1e
-
+md"**The GP specifies our *prior* beliefs about the properties of hte function we are modeling.** The *likelihod function* models how he observations deviate from the assumed *true* model in te generative process."
 
 # ╔═╡ d6dc9728-6eb9-47af-8ead-2c983c2e5454
 md"""Explotation-Exploitation trade-off: $(LocalResource("./figs/exploration_exploitation_balance_EI.png"))"""
@@ -831,7 +841,9 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─f48b3498-b046-4b69-913d-755e363b127e
 # ╠═bd2f75ce-a4ad-4ce5-b01d-21bb87538085
 # ╟─275327ae-4461-4084-8f08-eb9f126dda00
-# ╠═8c1a97be-4954-41c6-b76b-b42183a045e9
+# ╟─8c1a97be-4954-41c6-b76b-b42183a045e9
+# ╠═2563b54f-f6c2-4ef1-8fba-3a8aa11da45e
+# ╠═df62da12-723e-4497-9370-9f1b26178f09
 # ╟─4ce23d34-a9be-493b-9eb4-dcad2fa35ccc
 # ╠═cd23e545-7221-49a2-9184-0cbcb841d8d1
 # ╠═4ab82681-1bea-4f7b-b038-b7110234b55d
@@ -839,7 +851,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─bec28490-0a2c-4c06-b26f-09d451d77eb7
 # ╟─52e2eb62-dcbc-4ba5-bd76-2e8140f77acb
 # ╟─7751f518-104f-4bcf-976e-894a39ea0a63
-# ╠═3b3cfb03-1e17-4bb5-af9a-96193a066b1e
+# ╟─3b3cfb03-1e17-4bb5-af9a-96193a066b1e
 # ╟─d6dc9728-6eb9-47af-8ead-2c983c2e5454
 # ╟─79a4d88c-1ff1-41af-8c22-86995dd4a500
 # ╟─edf8a612-f709-485a-8314-c3692f853823
