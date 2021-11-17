@@ -102,6 +102,15 @@ end
 # ╔═╡ d5e92de2-4bd4-4882-80bb-6a34e0b14258
 md"The mean ($μ_{f}$) of the probability distribution represents the *most probable* characterization of the data."
 
+# ╔═╡ 1a0997bd-2476-4604-b603-2bc2fd859ac9
+
+
+# ╔═╡ e69b8f18-c036-4090-a441-9f32fad1dcd7
+md"The surrogate function is going to be a weighted (linear) combination of the components of feature space; so, we are essentially trying to learn the weights on each of the component vectors. We start by assuming the weights are all zero-mean normal distributions."
+
+# ╔═╡ 7491e6a1-387a-40ff-bfec-8f7cac2fd151
+md"when we are evaluating the Posterior distribution. The intuition behind this step is that the training points constrain the set of functions to those that pass through the training points."
+
 # ╔═╡ e920b1b8-dd14-4dd8-b4e7-250074602c45
 
 
@@ -233,6 +242,35 @@ md"""
 		- What are the parts of Bayes Rule; and, what do they mean?
 	(c) Explain why it is relevant and how it is used to inform the search process.
 """
+
+# ╔═╡ 753c4d5c-b8bc-4117-8159-c1fa21b098e9
+md"""
+To solve this problem, we will follow the following algorithm:
+1. We first choose a surrogate model for modeling the true function ff and define its prior (this will be a GP for us).
+2. Given the set of observations (function evaluations), use Bayes rule to obtain the posterior.
+3. Use an acquisition function α(x), which is a function of the posterior, to decide the next sample point $x_t = \text{argmax}_x α(x)$.
+4. Add newly sampled data to the set of observations and goto step #2 till convergence or budget elapses.
+"""
+
+# ╔═╡ 68585fe9-ecfa-4470-9dd2-09bf48ef701a
+md"Acquisition functions are heuristics for how desirable it is to evaluate a point, based on our present model 
+
+CDF: the probability the X will take on a value less than or equal to x 
+
+PDF: can be interpreted as providing a relative likelihood that the value of the random variable would be close to that sample
+"
+
+# ╔═╡ 35b46154-2cf5-426d-9d85-f2b243ba0f2e
+
+
+# ╔═╡ ede57e51-800f-4849-be94-e7e9971e7c8b
+
+
+# ╔═╡ 5c01aa3b-a54a-4c8c-bc56-328b4fc304a9
+
+
+# ╔═╡ 380867d0-ca48-4201-84ce-d3699a65bb3f
+
 
 # ╔═╡ bec28490-0a2c-4c06-b26f-09d451d77eb7
 md"**The Bayesian fomulation is to quantify the uncertainty of the unknown, black-box function with data.**"
@@ -848,6 +886,9 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─15f17cfe-ed5e-48e0-83e1-79382a85cb08
 # ╟─15066ae2-ea35-4353-ad03-fad595019c34
 # ╟─d5e92de2-4bd4-4882-80bb-6a34e0b14258
+# ╠═1a0997bd-2476-4604-b603-2bc2fd859ac9
+# ╠═e69b8f18-c036-4090-a441-9f32fad1dcd7
+# ╠═7491e6a1-387a-40ff-bfec-8f7cac2fd151
 # ╠═e920b1b8-dd14-4dd8-b4e7-250074602c45
 # ╟─73e98915-09ff-4bef-b474-d28f2a43bee7
 # ╟─60a81b29-678d-46fb-adf4-e67a6f11b7c5
@@ -870,6 +911,12 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═cd23e545-7221-49a2-9184-0cbcb841d8d1
 # ╠═4ab82681-1bea-4f7b-b038-b7110234b55d
 # ╟─17e6945f-6745-4f75-b331-bc1b2a24bcf0
+# ╟─753c4d5c-b8bc-4117-8159-c1fa21b098e9
+# ╠═68585fe9-ecfa-4470-9dd2-09bf48ef701a
+# ╠═35b46154-2cf5-426d-9d85-f2b243ba0f2e
+# ╠═ede57e51-800f-4849-be94-e7e9971e7c8b
+# ╠═5c01aa3b-a54a-4c8c-bc56-328b4fc304a9
+# ╠═380867d0-ca48-4201-84ce-d3699a65bb3f
 # ╟─bec28490-0a2c-4c06-b26f-09d451d77eb7
 # ╟─52e2eb62-dcbc-4ba5-bd76-2e8140f77acb
 # ╟─7751f518-104f-4bcf-976e-894a39ea0a63
