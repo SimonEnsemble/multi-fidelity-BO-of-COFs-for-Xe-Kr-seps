@@ -195,7 +195,13 @@ The input *Χ* is a vector space, the output space Y is also a vector space, and
 
 
 # ╔═╡ df62da12-723e-4497-9370-9f1b26178f09
+md"""
+Our scinario: We have a low-fidelity, cheap simulation which will be used more frequently than the high-fidelity, expensive simulation; so, we will try to use the low-fidelity model to inform high-fidelity model to reduce cost. This will result in a difference in the number of points tested by each fidelity.
 
+**Heterotopic data** - the outputs have different training sets. This occurs when the output responces at a point **x** can be obtained by separate simulations.
+
+**Asymmetric scenario** - this is a hierarchical multi-fidelity scenrio where n₁>n₂. This scenario attempts to improve the predictions of the expensive fidelity output *f\_2* by transfering data from the inexpensive, low-fdelity output f₁. Note, this scenario only occurs with heterotopic data, but we can use symmetric and asymmetric MOGPs.
+"""
 
 # ╔═╡ 4ce23d34-a9be-493b-9eb4-dcad2fa35ccc
 md"""
@@ -859,7 +865,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─275327ae-4461-4084-8f08-eb9f126dda00
 # ╟─8c1a97be-4954-41c6-b76b-b42183a045e9
 # ╠═2563b54f-f6c2-4ef1-8fba-3a8aa11da45e
-# ╠═df62da12-723e-4497-9370-9f1b26178f09
+# ╟─df62da12-723e-4497-9370-9f1b26178f09
 # ╟─4ce23d34-a9be-493b-9eb4-dcad2fa35ccc
 # ╠═cd23e545-7221-49a2-9184-0cbcb841d8d1
 # ╠═4ab82681-1bea-4f7b-b038-b7110234b55d
