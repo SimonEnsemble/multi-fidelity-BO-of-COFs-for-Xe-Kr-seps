@@ -2,7 +2,7 @@
 echo "#### START #### " `date`
 
 probe_radius=0.31 # atomic radius of He probe in Angstroms
-num_samples=5000  # number of Monte Carlo integration samples
+num_samples=100000  # number of Monte Carlo integration samples
 crystals_loc=../data/crystals
 
 output_loc=./zeo_outputs
@@ -11,7 +11,7 @@ mkdir -p $output_loc
 for xtal in $(cat ./cof_names.txt)
 do
     ~/zeo++-0.3/network -stripatomnames -ha -res $output_loc/$xtal.res \
-                        -vol $probe_radius $probe_radius 10*$num_samples $output_loc/$xtal.vol \
+                        -vol $probe_radius $probe_radius $num_samples $output_loc/$xtal.vol \
                         -sa $probe_radius $probe_radius $num_samples $output_loc/$xtal.sa \
                         $crystals_loc/$xtal
 done
