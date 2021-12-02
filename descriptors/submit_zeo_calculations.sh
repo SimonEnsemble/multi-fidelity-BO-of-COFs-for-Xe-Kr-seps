@@ -2,7 +2,7 @@
 echo "#### START #### " `date`
 
 probe_radius=0.31 # atomic radius of He probe in Angstroms
-num_samples=100000  # number of Monte Carlo integration samples
+num_samples=50000 # number of Monte Carlo integration samples
 crystals_loc=../data/crystals
 
 output_loc=./zeo_outputs
