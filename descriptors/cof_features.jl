@@ -110,7 +110,7 @@ Xtals = "ede5f01d-793e-4c47-9885-c447d1f18d6d"
 [compat]
 CSV = "~0.10.4"
 DataFrames = "~1.3.4"
-Xtals = "~0.4.6"
+Xtals = "~0.4.7"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -525,10 +525,10 @@ uuid = "ea10d353-3f73-51f8-a26c-33c1cb351aa5"
 version = "1.4.2"
 
 [[deps.Xtals]]
-deps = ["Aqua", "AtomsBase", "Bio3DView", "CSV", "DataFrames", "FIGlet", "Graphs", "JLD2", "LinearAlgebra", "Logging", "MetaGraphs", "Printf", "StaticArrays", "Unitful"]
-git-tree-sha1 = "da8cc63b4f154c6c6b1f4d07e94e8d06e5be6cf4"
+deps = ["Aqua", "AtomsBase", "Bio3DView", "CSV", "DataFrames", "FIGlet", "Graphs", "JLD2", "LinearAlgebra", "MetaGraphs", "Printf", "StaticArrays", "Unitful"]
+git-tree-sha1 = "67e033a0962a944970e4c8838b75f60584ccb151"
 uuid = "ede5f01d-793e-4c47-9885-c447d1f18d6d"
-version = "0.4.6"
+version = "0.4.7"
 
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
