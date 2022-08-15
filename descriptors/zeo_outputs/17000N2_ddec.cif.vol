@@ -1,0 +1,3 @@
+@ ./zeo_outputs/17000N2_ddec.cif.vol Unitcell_volume: 13958.8   Density: 0.660181   AV_A^3: 8403.45 AV_Volume_fraction: 0.60202 AV_cm^3/g: 0.911902 NAV_A^3: 0.837525 NAV_Volume_fraction: 6e-05 NAV_cm^3/g: 9.08842e-05
+Number_of_channels: 1 Channel_volume_A^3: 8403.45  
+Number_of_pockets: 53 Pocket_volume_A^3: 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0.279175  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0.279175  0  0  0  0  0  0  0  0.279175  0  

@@ -8,9 +8,9 @@
 ## ignore zipped files
 *.zip
 ## ignore Zeo++ output files
-*.res
-*.chan
-*.sa
-*.vol
+#*.res
+#*.chan
+#*.sa
+#*.vol
 # ignore a specific directory
 ./benchmarking_sims/simulations/

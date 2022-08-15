@@ -1,0 +1,3 @@
+@ ./zeo_outputs/20600N2_ddec.cif.vol Unitcell_volume: 7199.78   Density: 0.589136   AV_A^3: 4661.28 AV_Volume_fraction: 0.64742 AV_cm^3/g: 1.09893 NAV_A^3: 8.63973 NAV_Volume_fraction: 0.0012 NAV_cm^3/g: 0.00203688
+Number_of_channels: 1 Channel_volume_A^3: 4661.28  
+Number_of_pockets: 24 Pocket_volume_A^3: 0  0.287991  0  2.15993  0.143996  0  0.287991  0  0  0  1.29596  0  0  0  0.143996  1.87194  0.143996  0.143996  0  0.143996  0  0.287991  1.58395  0.143996  
