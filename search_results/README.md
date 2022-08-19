@@ -1,0 +1,1 @@
+The directories are named in accordance with the method used to normalize (or standardize) the feature vectors. Since this will change the spread of the data within feature space, and thus influence the BO search trajectory.
