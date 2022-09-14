@@ -6,8 +6,13 @@ Where to start:
         `descriptors/submit_slurm_job.sh`
     - The raw data is stored in the `zeo_outputs/` sub directory.
 3. Get composition descriptors using `PorousMaterials.jl` (`gcmc_mixtures` branch in developement) by running `descriptors/cof_features.jl`and store them in `descriptors/geometric_properties.csv`
-4. 
-
+4. Run HTC Screening of COFs i.e. perform mixture grand-canonical Monte Carlo simulations to obtain adsorbtion properties by running `htc_screening/sbatch_submit_script.sh` on a HPC cluster which uses SLURM.
+5. Prepare Data (feature vectors and targets) for use in the BO search by running the `Prepare_Data_and_Preliminary_Analysis.ipynb` (soon `new_prepare_data.jl`) 
+    The results are stored in `targets_and_*_features.jld2` where '*' is the normalization scheme.
+6. Run Bayesian Optimization (BO) search notebooks. The results are stored in `search_results` directory
+    - `MultiFidelity_BO.ipynb`
+    - `SingleFidelity_BO.ipynb`
+7. Generate plots from search results using `viz.ipynb`. Figures are stored in the `figs` directory. 
 
 
 
