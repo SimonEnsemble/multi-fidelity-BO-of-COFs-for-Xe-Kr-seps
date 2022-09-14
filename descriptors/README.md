@@ -6,4 +6,8 @@ This directory cnotains the scripts nessecary to generate the chemical and geome
 - `geometric_properties.csv`: file containing geometric property descriptors of interest for each material
 - `submit_zeo_calculations.sh`: bash script used to run `Zeo++` calculations 
 - `summary_*.txt`: files containing a summary of specific properties (indicated in filename) from the `Zeo++` output for each material
+- `zeo_outputs`: raw data files output by `Zeo++` calculations.
 
+file extentions in that folder?
+
+uh... where did the `cof_descriptors.csv` come from?

@@ -1,3 +1,16 @@
+Where to start:
+1. A dataset of COFs crystal structure files (`.cif`) from [Materials Cloud](https://archive.materialscloud.org/record/2021.100) and store them in the `data/crystals`
+2. Get geometric descriptors using `Zeo++` by running the `descriptors/submit_zeo_calculations.sh` (runs locally)
+    the output will be compiled into `descriptors/geometric_properties.csv`
+    - If you are running it on a HPC cluster which uses SLURM, as we did, see the submission script 
+        `descriptors/submit_slurm_job.sh`
+    - The raw data is stored in the `zeo_outputs/` sub directory.
+3. Get composition descriptors using `PorousMaterials.jl` (`gcmc_mixtures` branch in developement) by running `descriptors/cof_features.jl`and store them in `descriptors/geometric_properties.csv`
+4. 
+
+
+
+
 Files, Folders, and their contents:
 - `benchmarking_sims`: contains code and analysis to determine # cycles vs error for GCMC simulations and Henry Coefficients.
 - `data`: contains simulation input and output files
