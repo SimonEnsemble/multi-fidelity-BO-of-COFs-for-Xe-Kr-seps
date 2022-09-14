@@ -177,9 +177,9 @@ StatsBase = "~0.33.21"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.0"
+julia_version = "1.8.1"
 manifest_format = "2.0"
-project_hash = "fed00266221719a181ae8ec760a1dffb2c57cba0"
+project_hash = "936b8781c6df3bd53ed57caf91c7e3377da4cf9d"
 
 [[deps.Adapt]]
 deps = ["LinearAlgebra"]
