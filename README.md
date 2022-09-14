@@ -1,4 +1,4 @@
-Where to start:
+ ## Where to start:
 1. A dataset of COFs crystal structure files (`.cif`) from [Materials Cloud](https://archive.materialscloud.org/record/2021.100) and store them in the `data/crystals`
 2. Get geometric descriptors using `Zeo++` by running the `descriptors/submit_zeo_calculations.sh` (runs locally)
     the output will be compiled into `descriptors/geometric_properties.csv`
@@ -16,7 +16,7 @@ Where to start:
 
 
 
-Files, Folders, and their contents:
+## Files, Folders, and their contents:
 - `benchmarking_sims`: contains code and analysis to determine # cycles vs error for GCMC simulations and Henry Coefficients.
 - `data`: contains simulation input and output files
 - `descriptors`: contains the scritps used to generate the data used in training the Gaussian Process.
@@ -24,8 +24,6 @@ Files, Folders, and their contents:
 - `htc_screening`: contains code to run and analyze the high-throughput comuptational screening of the COFs in `./data/crystals`.
 - `search_results`: the BO search results organized by the type of normalization scheme used and subdivided by the type of BO search carried out. Also contains files for sets of initializing COFs under each scheme.
 
-TODO: 
-- organize/move notebooks and datafiles out of the main directory and into a more logical location
 
 notebooks and datafiles:
 - `Prepare_data_and_Preliminary_analysis`: prepares data to be used for BO and looks at some correlations between data
@@ -41,4 +39,7 @@ The paper associated with the top performing COF is:
 p1944,"J. Am. Chem. Soc., 2019, 141, 16810-16816",10.1021/jacs.9b07644,Unveiling Electronic Properties in Metal–Phthalocyanine-Based Pyrazine-Linked Conjugated Two-Dimensional Covalent Organic Frameworks
 In the paper they report on two novel COFs on with Zn and one with Cu. The COF with Cu is the 19440N2 (top COF) and the Zn COF is 19441N2.
 See [here](https://github.com/danieleongari/CURATED-COFs) for the labeling convention.
+
+## TODO: 
+- organize/move notebooks and datafiles out of the main directory and into a more logical location
 
