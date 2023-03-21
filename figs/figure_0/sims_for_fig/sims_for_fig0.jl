@@ -57,10 +57,11 @@ end
 # ╔═╡ 8bc766af-67e9-41f8-be16-ce7d79d5499c
 begin
 	# run a very short muVT with molecules and print the snapshots
-	res, mols = μVT_sim(xtal, molecules, temp, mole_fxns*pressure, ljff, n_cycles_per_volume=5, write_adsorbate_snapshots=true, snapshot_frequency=100)
+	res, mols = μVT_sim(xtal, molecules, temp, mole_fxns*pressure, ljff, n_cycles_per_volume=200, write_adsorbate_snapshots=true, snapshot_frequency=100)
 end
 
 # ╔═╡ 56cb261a-82b0-46de-a7bb-3b5062705cf7
+#=╠═╡
 begin
 	###
 	#  write final position of molecules to file
@@ -69,12 +70,7 @@ begin
 
 	write_xyz(Frac.(mols[2], xtal.box), xtal.box, joinpath(rc[:paths][:data], "snapshots", "mVT_Kr_in_21311N3.xyz"))
 end
-
-# ╔═╡ 496e7a5e-b3a2-4551-94ac-9c79e430d497
-
-
-# ╔═╡ 55edf2e9-ca5f-4159-8b71-19d3425443bd
-
+  ╠═╡ =#
 
 # ╔═╡ 3704fa5b-326d-4011-8d3c-9e5b3d024abc
 begin
@@ -94,7 +90,7 @@ begin
 	###
 	#  pre-capture sims
 	###
-	pre_cap_press = [0.2, 0.8] * 100.0
+	pre_cap_press = [0.2, 0.8] * 50.0
 	pre_res, pre_mol = μVT_sim(sim_box, mixture, temp, 
 										pre_cap_press, ljff, 
 										n_cycles_per_volume=10, 
@@ -115,15 +111,12 @@ begin
 	write_cif(sim_box, joinpath(rc[:paths][:crystals], sim_box.name))
 end
 
-# ╔═╡ b84465ac-71d9-4f5d-b66a-ca9c5e594c9d
-
-
 # ╔═╡ cddff7bb-2051-4996-a3a3-a5b92103e5ef
 begin
 	###
 	#  post-capture sims
 	###
-	post_cap_press = [0.9, 0.1] * 100.0
+	post_cap_press = [0.8, 0.2] * 50.0
 	post_res, post_mol = μVT_sim(sim_box, mixture, temp, 
 										post_cap_press, ljff, 
 										n_cycles_per_volume=10, 
@@ -843,11 +836,8 @@ version = "17.4.0+0"
 # ╠═bac8a7db-bd30-4ef1-948e-0818a28c08d8
 # ╠═8bc766af-67e9-41f8-be16-ce7d79d5499c
 # ╠═56cb261a-82b0-46de-a7bb-3b5062705cf7
-# ╠═496e7a5e-b3a2-4551-94ac-9c79e430d497
-# ╠═55edf2e9-ca5f-4159-8b71-19d3425443bd
 # ╠═3704fa5b-326d-4011-8d3c-9e5b3d024abc
 # ╠═bf7a6a8e-ec8b-42fc-b25c-167213b41f67
-# ╠═b84465ac-71d9-4f5d-b66a-ca9c5e594c9d
 # ╠═cddff7bb-2051-4996-a3a3-a5b92103e5ef
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
