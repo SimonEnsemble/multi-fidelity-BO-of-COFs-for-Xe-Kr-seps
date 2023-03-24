@@ -13,14 +13,15 @@ end
 begin
 	# Temperature
 	temp = 298.0 # units: K
-	pressure = 2.0 # units: bar
+
+	# total pressure
+	pressure = 1.0 # units: bar
 
 	# molecules
 	xenon = Molecule("Xe")
 	krypton = Molecule("Kr")
+	ideal_gas = Molecule("ig")
 	molecules = [xenon, krypton]
-	mole_fxns = [0.5, 0.5] # for [Xe, Kr] respectively
-	@assert sum(mole_fxns) == 1.0 # quick check
 
 	# force field: 12-6 Lennard-Jonnes potential using UFF params
 	ljff = LJForceField("UFF")
@@ -29,73 +30,68 @@ begin
 	xtal = Crystal("21311N3_ddec.cif", check_neutrality=false)
 end
 
-# ╔═╡ 7f47df56-43ef-4ca1-9c5b-15c6085e6f21
-begin
-	###
-	#  find the location of the minimum energy
-	###
-	xe_min, xe_emin = find_energy_minimum(xtal, xenon, ljff) # Xe
-	kr_min, kr_emin = find_energy_minimum(xtal, krypton, ljff) # Kr
-
-	###
-	#  make it a crystal so we can print it with the original xtal
-	###
-	xe_xtal = Crystal(string(xe_min.species) * "_in_" * xtal.name, xtal.box, xe_min.atoms, xe_min.charges)
-
-	kr_xtal = Crystal(string(kr_min.species) * "_in_" * xtal.name, xtal.box, kr_min.atoms, kr_min.charges)
-	
-end
-
-# ╔═╡ bac8a7db-bd30-4ef1-948e-0818a28c08d8
-begin
-	# try to write it as an .xzy and see if we can do it this way 
-	# before adding it to the original xtal and printing it that way
-	write_cif(xe_xtal, joinpath(rc[:paths][:crystals], xe_xtal.name))
-	write_cif(kr_xtal, joinpath(rc[:paths][:crystals], kr_xtal.name))
-end
+# ╔═╡ f12bb5c2-3838-42c9-ae0d-9be7c5e9cda7
+md"""
+We will simulate the adsorption of Xe and Kr (partial pressures of 0.2 and 0.8 bar, respectively) in COF 21311N3 at 298.0 K using the UFF parameters for the 12-6 Lennard-Jones potential for both the COF and the adsorbates. 
+"""
 
 # ╔═╡ 8bc766af-67e9-41f8-be16-ce7d79d5499c
-begin
-	# run a very short muVT with molecules and print the snapshots
-	res, mols = μVT_sim(xtal, molecules, temp, mole_fxns*pressure, ljff, n_cycles_per_volume=200, write_adsorbate_snapshots=true, snapshot_frequency=100)
-end
-
-# ╔═╡ 56cb261a-82b0-46de-a7bb-3b5062705cf7
+# ╠═╡ disabled = true
 #=╠═╡
 begin
+	###
+	#  muVT simulation in COF - 4500 seconds to run cell
+	###
+	res, mols = μVT_sim(xtal, molecules, temp, [0.8, 0.2] * 2.0, 
+						ljff, n_cycles_per_volume=10)
+
 	###
 	#  write final position of molecules to file
 	###
 	write_xyz(Frac.(mols[1], xtal.box), xtal.box, joinpath(rc[:paths][:data], "snapshots", "mVT_Xe_in_21311N3.xyz"))
 
 	write_xyz(Frac.(mols[2], xtal.box), xtal.box, joinpath(rc[:paths][:data], "snapshots", "mVT_Kr_in_21311N3.xyz"))
+	
 end
   ╠═╡ =#
 
-# ╔═╡ 3704fa5b-326d-4011-8d3c-9e5b3d024abc
+# ╔═╡ 2280e5f2-ac09-4dba-8121-852d9f4628b5
+md"""
+We want to run short simulations to show the gas before and after being separated by the COF. Before being separated, the gas composition should be the same as those inposed as the reserviour in the adsorption simulation (because, in practice, it would be). The post-separation should be run at the same ambient pressure, but we will idealize the separation, so the partial pressure of Xe and Kr are 0.0 bar and 1.0 bar respectively. The simulation box is a 100Å x 100Å x 100Å cube. 
+"""
+
+# ╔═╡ de2c9e57-0282-45a7-b473-a0604b3cf4d8
 begin
 	# make an empty box (same size as the xtal) and run a short simuation
 	# to insert Xe and Kr in it say 20:80 mole fxn
 	# Run a secon simulation where with an empty box and a Xe/Kr of 50:50
 	# to show the enrichment after being offgassed from the COF which 
 	# was simulated with Xe/Kr 50:50 strictly for illustrative purposes
-	mixture = [Molecule("Xe"), Molecule("Kr")]
-	uc = replicate(unit_cube(), (30, 30, 30))
-	write_vtk(uc, joinpath(rc[:paths][:data], "vtk","empty_simbox.vtk"))
+	uc = replicate(unit_cube(), (100, 100, 100))
+	write_vtk(uc, joinpath(rc[:paths][:data], "vtk", "empty_simbox.vtk"))
+	# empty atoms
+	aa = Atoms(1, Symbol[], Frac(zeros(3,1)))
+	# empty charges
+	cc = Charges(0, Float64[], Frac(Array{Float64}(undef, 3, 0)))
+	# construct simulation box as crystal 
+	sim_box = Crystal("empty_box", uc, Frac(deepcopy(ideal_gas.atoms), uc), Frac(deepcopy(ideal_gas.charges), uc))
+
 	
-	sim_box = Crystal("e", uc, 
-						  Frac(deepcopy(xenon.atoms), uc), 
-						  Frac(deepcopy(xenon.charges), uc))
-	
+	write_cif(sim_box, joinpath(rc[:paths][:crystals], sim_box.name))
+end
+
+# ╔═╡ f72245cf-4bd1-4dcf-9ed1-5502192abd6f
+sim_box
+
+# ╔═╡ 3704fa5b-326d-4011-8d3c-9e5b3d024abc
+begin
 	###
 	#  pre-capture sims
 	###
-	pre_cap_press = [0.2, 0.8] * 50.0
-	pre_res, pre_mol = μVT_sim(sim_box, mixture, temp, 
+	pre_cap_press = [0.2, 0.8] * 1.0
+	pre_res, pre_mol = μVT_sim(sim_box, molecules, temp, 
 										pre_cap_press, ljff, 
-										n_cycles_per_volume=10, 
-										write_adsorbate_snapshots=true, 
-										snapshot_frequency=100)
+										n_cycles_per_volume=1)
 
 	#  write final position of molecules to file
 	write_xyz(Frac.(pre_mol[1], sim_box.box), sim_box.box, 
@@ -103,30 +99,22 @@ begin
 
 	write_xyz(Frac.(pre_mol[2], sim_box.box), sim_box.box, 
 		joinpath(rc[:paths][:data], "snapshots", "pre-capture_mVT_Kr_in_empty_space.xyz"))
-	
-end
-
-# ╔═╡ bf7a6a8e-ec8b-42fc-b25c-167213b41f67
-begin
-	write_cif(sim_box, joinpath(rc[:paths][:crystals], sim_box.name))
 end
 
 # ╔═╡ cddff7bb-2051-4996-a3a3-a5b92103e5ef
 begin
 	###
-	#  post-capture sims
+	#  post-capture sims - 10k seconds to run cell
 	###
-	post_cap_press = [0.8, 0.2] * 50.0
-	post_res, post_mol = μVT_sim(sim_box, mixture, temp, 
-										post_cap_press, ljff, 
-										n_cycles_per_volume=10, 
-										write_adsorbate_snapshots=true, 
-										snapshot_frequency=100)
+	post_cap_mol_press = [0.1, 0.9] * 1.0
+	post_res, post_mol = μVT_sim(sim_box, molecules, temp, 
+								 post_cap_mol_press, ljff, 
+								 n_cycles_per_volume=2)
 	
 	#  write final position of molecules to file
-	write_xyz(Frac.(post_mol[1], sim_box.box), sim_box.box, joinpath(rc[:paths][:data], "snapshots", "post-capture_mVT_Xe_in_empty_space.xyz"))
+	write_xyz(Frac.(post_mol[1], sim_box.box), sim_box.box, joinpath(rc[:paths][:data], "snapshots", "post-capture_mVT_Xe_in_empty_space.xyz")) # Xe
 
-	write_xyz(Frac.(post_mol[2], sim_box.box), sim_box.box, joinpath(rc[:paths][:data], "snapshots", "post-capture_mVT_Kr_in_empty_space_hp.xyz"))
+	write_xyz(Frac.(post_mol[2], sim_box.box), sim_box.box, joinpath(rc[:paths][:data], "snapshots", "post-capture_mVT_Kr_in_empty_space_hp.xyz")) # Kr
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -832,12 +820,12 @@ version = "17.4.0+0"
 # ╔═╡ Cell order:
 # ╠═5ad722a0-a4bd-11ed-0658-392d1f423c06
 # ╠═226290fa-2a66-4196-8d49-4b0a02d6c052
-# ╠═7f47df56-43ef-4ca1-9c5b-15c6085e6f21
-# ╠═bac8a7db-bd30-4ef1-948e-0818a28c08d8
+# ╟─f12bb5c2-3838-42c9-ae0d-9be7c5e9cda7
 # ╠═8bc766af-67e9-41f8-be16-ce7d79d5499c
-# ╠═56cb261a-82b0-46de-a7bb-3b5062705cf7
+# ╟─2280e5f2-ac09-4dba-8121-852d9f4628b5
+# ╠═de2c9e57-0282-45a7-b473-a0604b3cf4d8
+# ╠═f72245cf-4bd1-4dcf-9ed1-5502192abd6f
 # ╠═3704fa5b-326d-4011-8d3c-9e5b3d024abc
-# ╠═bf7a6a8e-ec8b-42fc-b25c-167213b41f67
 # ╠═cddff7bb-2051-4996-a3a3-a5b92103e5ef
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

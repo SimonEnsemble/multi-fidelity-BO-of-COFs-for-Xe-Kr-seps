@@ -1,4 +1,5 @@
 atom,atomicmass[amu],atomicradius[Angstrom],ionicradius[Angstrom]
+VOID,0.0,0.001,0.001
 H,1.0079,0.53,0.25
 He,4.0026,0.31,0.31
 Li,6.941,1.67,1.45
