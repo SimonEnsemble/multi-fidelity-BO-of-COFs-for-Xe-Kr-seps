@@ -1,5 +1,39 @@
- ## Where to start:
-1. A dataset of COFs crystal structure files (`.cif`) from [Materials Cloud](https://archive.materialscloud.org/record/2021.100) and store them in the `data/crystals`
+## Where to start:
+
+required software/packages:
+Python3:
+```
+- torch
+- gpytorch
+- botorch
+- sklearn
+- scipy
+- numpy 
+- pandas 
+- random
+- pickle
+- h5py 
+- os
+- time
+- matplotlib
+- seaborn
+```
+
+Julia:
+```
+using PorousMaterials 
+using JLD2
+using PyPlot
+using PyCall
+using CSV
+using DataFrames
+using StatsBase
+using Formatting
+
+```
+
+
+1. A dataset of the COFs crystal structure files (`.cif`) are obtained from [Materials Cloud](https://archive.materialscloud.org/record/2021.100) and stored in the `data/crystals` (already done).
 2. Get geometric descriptors using `Zeo++` by running the `descriptors/submit_zeo_calculations.sh` (runs locally)
     the output will be compiled into `descriptors/geometric_properties.csv`
     - If you are running it on a HPC cluster which uses SLURM, as we did, see the submission script 
