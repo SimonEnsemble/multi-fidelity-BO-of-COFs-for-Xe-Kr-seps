@@ -1,5 +1,5 @@
 ## ignore jupyter notebook updates
-.ipynb_checkpoints/*
+*/.ipynb_checkpoints/*
 ## ignore papers and images ##
 *.pdf
 *.docx

@@ -10,6 +10,7 @@ Python3:
 - scipy
 - numpy 
 - pandas 
+- math
 - random
 - pickle
 - h5py 
@@ -29,6 +30,12 @@ using CSV
 using DataFrames
 using StatsBase
 using Formatting
+
+```
+
+Other:
+```
+Zeo++
 
 ```
 
