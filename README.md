@@ -51,7 +51,7 @@ iRASPA
 5. Prepare Data (feature vectors and targets) for use in the BO search by running the `Prepare_Data_and_Preliminary_Analysis.ipynb` (soon `new_prepare_data.jl`) 
     The results are stored in `targets_and_*_features.jld2` where '*' is the normalization scheme.
 6. Generate list of initializing COFs with `generate_initializing_cof_ids.ipynb`
-7. Run Bayesian Optimization (BO) search notebooks. The results are stored in `search_results` directory
+7. Run Bayesian Optimization (BO) search notebooks. The results are stored in `run_BO` directory
     - `MultiFidelity_BO.ipynb`
     - `SingleFidelity_BO.ipynb`
 8. Generate plots from search results using `viz.ipynb`. Figures are stored in the `figs` directory. 
