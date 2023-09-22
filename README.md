@@ -82,6 +82,3 @@ p1944,"J. Am. Chem. Soc., 2019, 141, 16810-16816",10.1021/jacs.9b07644,Unveiling
 In the paper they report on two novel COFs on with Zn and one with Cu. The COF with Cu is the 19440N2 (top COF) and the Zn COF is 19441N2.
 See [here](https://github.com/danieleongari/CURATED-COFs) for the labeling convention.
 
-## TODO: 
-- organize/move notebooks and datafiles out of the main directory and into a more logical location
-
