@@ -1,44 +1,12 @@
 ## Where to start:
 
 required software/packages:
-Python3:
 ```
-- torch
-- gpytorch
-- botorch
-- sklearn
-- scipy
-- numpy 
-- pandas 
-- math
-- random
-- pickle
-- h5py 
-- os
-- time
-- matplotlib
-- seaborn
+[Python 3](https://www.python.org/downloads/) version 3.8 or newer
+[Julia](https://julialang.org/downloads/) version 1.9 or newer
+[Zeo++](http://www.zeoplusplus.org/download.html)
+[iRASPA](https://iraspa.org/iraspa/)
 ```
-
-Julia:
-```
-using PorousMaterials 
-using JLD2
-using PyPlot
-using PyCall
-using CSV
-using DataFrames
-using StatsBase
-using Formatting
-
-```
-
-Other:
-```
-Zeo++
-iRASPA
-```
-
 
 1. A dataset of the COFs crystal structure files (`.cif`) are obtained from [Materials Cloud](https://archive.materialscloud.org/record/2021.100) and stored in the `data/crystals` (already done).
 2. Get geometric descriptors using `Zeo++` by running the `descriptors/submit_zeo_calculations.sh` (runs locally)
