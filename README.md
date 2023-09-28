@@ -13,13 +13,13 @@ required software/packages:
     the output will be compiled into `descriptors/geometric_properties.csv`
     - If you are running it on a HPC cluster which uses SLURM, as we did, see the submission script 
         `descriptors/submit_slurm_job.sh`
-    - The raw data is stored in the `zeo_outputs/` sub directory.
-3. Get composition descriptors using `PorousMaterials.jl` (`gcmc_mixtures` branch in developement) by running `descriptors/cof_features.jl`and store them in `descriptors/geometric_properties.csv`
+    - The raw data is stored in the `descriptors/zeo_outputs/` subdirectory.
+3. Get composition descriptors using [`PorousMaterials.jl`](https://github.com/SimonEnsemble/PorousMaterials.jl) (version 0.4.2 or newer) by running `descriptors/cof_features.jl`and store them in `descriptors/chemical_properties.csv`
 4. Run HTC Screening of COFs i.e. perform mixture grand-canonical Monte Carlo simulations to obtain adsorbtion properties by running `htc_screening/sbatch_submit_script.sh` on a HPC cluster which uses SLURM.
 5. Prepare Data (feature vectors and targets) for use in the BO search by running the `Prepare_Data_and_Preliminary_Analysis.ipynb` (soon `new_prepare_data.jl`) 
     The results are stored in `targets_and_*_features.jld2` where '*' is the normalization scheme.
-6. Generate list of initializing COFs with `generate_initializing_cof_ids.ipynb`
-7. Run Bayesian Optimization (BO) search notebooks. The results are stored in `run_BO` directory
+6. Generate the list of initializing COF IDs using the `run_BO/generate_initializing_cof_ids.ipynb`.
+7. Run Bayesian Optimization (BO) search notebooks. The results are stored in `search_results` directory
     - `MultiFidelity_BO.ipynb`
     - `SingleFidelity_BO.ipynb`
 8. Generate plots from search results using `viz.ipynb`. Figures are stored in the `figs` directory. 
