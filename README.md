@@ -3,7 +3,7 @@
 required software/packages:
 ```
 [Python 3](https://www.python.org/downloads/) version 3.8 or newer
-[Julia](https://julialang.org/downloads/) version 1.9 or newer
+[Julia](https://julialang.org/downloads/) version 1.7.3 or newer
 [Zeo++](http://www.zeoplusplus.org/download.html)
 [iRASPA](https://iraspa.org/iraspa/)
 ```
