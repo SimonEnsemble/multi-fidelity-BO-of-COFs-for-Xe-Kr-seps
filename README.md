@@ -27,12 +27,14 @@ required software/packages:
 
 
 ## Files, Folders, and their contents:
-- `benchmarking_sims`: contains code and analysis to determine # cycles vs error for GCMC simulations and Henry Coefficients.
-- `data`: contains simulation input and output files
+- `benchmarking_sims`: contains code and analysis to determine the number of cycles required to reduce statistical error for GCMC simulations and Henry Coefficients below a given threshold. 
+- `data`: contains simulation input and output files.
 - `descriptors`: contains the scritps used to generate the data used in training the Gaussian Process.
 - `figs`: contains plots, and project files needed to generate the figures in the associated text.
 - `htc_screening`: contains code to run and analyze the high-throughput comuptational screening of the COFs in `./data/crystals`.
 - `search_results`: the BO search results organized by the type of normalization scheme used and subdivided by the type of BO search carried out. Also contains files for sets of initializing COFs under each scheme.
+
+- `targets`: contains the high-fidelity GCMC simulation results and Henry coefficient calculation results for each material in the study as CSV files.
 
 
 notebooks and datafiles:
