@@ -1,6 +1,6 @@
 # multi-fidelity Bayesian optimization of covalent organic frameworks
-this repo contains data and code to reproduce the results for:
-> N. Gantzler, A. Deshwal, J. Doppa, C. Simon. "Multi-fidelity Bayesian Optimization of Covalent Organic Frameworks for Xenon/Krypton Separations"
+:rocket: this repo contains data and code to reproduce the results for:
+> N. Gantzler, A. Deshwal, J. Doppa, C. Simon. "Multi-fidelity Bayesian Optimization of Covalent Organic Frameworks for Xenon/Krypton Separations" (2023) [ChemRxiv link](https://chemrxiv.org/engage/chemrxiv/article-details/64970d6a4821a835f355c8b9)
 
 we describe the sequence of steps we took to make our paper reproducible. the output of each step is saved as a file, so you can start at any step.
 
@@ -24,7 +24,10 @@ the molecular simulation code in Julia is contained in `htc_screening/multi_fide
 * the raw simulation output files (`.jld`'s) are in `data/simulations/`
 * the simulation data is organized as `.csv` in `targets/{gcmc_simulation.csv, henry_calculations.csv}`
 
+we employed `PorousMaterials.jl` [v0.4.2](https://github.com/SimonEnsemble/PorousMaterials.jl/releases/tag/0.4.2) for the mixture GCMC and Henry coefficient calculations.
+
 ## COF descriptors
+
 ### structural/geometrical descriptors
 we computed structural descriptors using `Zeo++` by running the script `descriptors/submit_zeo_calculations.sh`, which runs locally and computes descriptors for all of the COFs. (if running on a HPC cluster with SLURM, see `descriptors/submit_slurm_job.sh`).
 * the raw Zeo++ outputs per-crystal are stored in `descriptors/zeo_outputs/`.
@@ -35,6 +38,8 @@ we computed structural descriptors using `Zeo++` by running the script `descript
 we computed the compositional descriptors of the COFs using [`PorousMaterials.jl`](https://github.com/SimonEnsemble/PorousMaterials.jl) (version 0.4.2 or newer) by running `descriptors/cof_features.jl`.
 * we stored them in `descriptors/chemical_properties.csv`
 
+### joined structural and compositional features
+the COF descriptors are summarized in `descriptors/cof_descriptors.csv`, which joins `descriptors/geometric_properties.csv` and `descriptors/chemical_properties.csv`.
 
 ## amalgamating the data for MFBO
 we read in and amalgamated the structural and compositional features and low- and high-fidelity simulation results into `targets_and_raw_features.jld2` by running the notebook `Prepare_Data_and_Preliminary_Analysis.ipynb`. this `.jld2` file is what we read into our Jupyter notebooks for Bayes Opt. the data are conveniently stored as a dictionary of arrays. the outputted file is present in `run_BO`.
@@ -45,10 +50,11 @@ we generate the list of initializing COF IDs using the `run_BO/generate_initiali
 
 ### single- and multi-fidelity Bayes Opt
 finally, the two notebooks:
-*`MultiFidelity_BO.ipynb`
-* `SingleFidelity_BO.ipynb`
+* `run_BO/MultiFidelity_BO.ipynb`
+* `run_BO/SingleFidelity_BO.ipynb`
 contain the Python code for running Bayes Opt.
-the results are stored in `search_results` to be read into our `viz.ipynb` notebook next for analysis.
+
+the results from each run are stored in `search_results` to be read into our `figs/viz.ipynb` notebook next for analysis.
 
 ### visualizations/analysis
 we draw plots to summarize the Bayes Opt search results results using `viz.ipynb`. the outputted figures are stored in the `figs` directory. 
