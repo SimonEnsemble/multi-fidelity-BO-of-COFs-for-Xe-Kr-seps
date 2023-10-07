@@ -1,4 +1,5 @@
-This directory contains the scripts necessary to generate the chemical and geometric descriptors used to train a Gaussian Process.
+# computing structural descriptors of the COFs
+This directory contains the scripts necessary to generate the chemical and geometric descriptors of the COFs.
 - `chemical_properties.csv`: file containing chemical property descriptors of interest for each material
 - `cof_descriptors.csv`: file containing each COF's name and associated descriptor values
 - `cof_features.jl`: A Julia Pluto notebook which uses `PorousMaterials.jl` to determine chemical property descritors for each material and write them to `chemical_properties.csv`
